@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  Copyright (c) 2018 anqi.huang@outlook.com
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:autoMirrored="true"
+    android:viewportHeight="1024"
+    android:viewportWidth="1024">
+    <path
+        android:fillColor="@color/white"
+        android:pathData="M939.99,312.39L774.76,147.16a59.46,59.46 0,0 0,-46.79 -17.27,57.32 57.32,0 0,0 -4.8,-0.22L635.14,129.67l-6.17,3.44c-32.61,18.14 -74.22,28.13 -117.17,28.13 -42.95,0 -84.56,-9.99 -117.17,-28.13l-6.17,-3.44L300.42,129.67a59.99,59.99 0,0 0,-53.05 31.69l-163.32,163.33C72.77,335.97 66.56,350.96 66.56,366.9s6.21,30.94 17.48,42.21l119.33,119.33a59.19,59.19 0,0 0,36.79 17.22v288.4c0,33.23 27.03,60.27 60.26,60.27h422.74c33.23,0 60.27,-27.04 60.27,-60.27L783.44,533.4a59.2,59.2 0,0 0,37.22 -17.27l119.35,-119.33c23.26,-23.27 23.26,-61.14 -0.01,-84.41zM901.47,358.28L782.13,477.62a5.05,5.05 0,0 1,-3.65 1.51c-0.95,0 -2.34,-0.25 -3.59,-1.42l-45.94,-43.36v399.72c0,3.2 -2.6,5.79 -5.79,5.79L300.42,839.85a5.79,5.79 0,0 1,-5.79 -5.79L294.64,448.56l-45.58,41.5c-1.23,1.13 -2.6,1.36 -3.52,1.36a5.06,5.06 0,0 1,-3.64 -1.51L122.56,370.59c-1.26,-1.26 -1.53,-2.7 -1.53,-3.69s0.27,-2.43 1.53,-3.69L287.44,198.33l5.27,-4.73 2.36,-5.83a5.8,5.8 0,0 1,5.37 -3.63h74.12c39.86,20.67 87.14,31.56 137.25,31.56 50.11,0 97.39,-10.89 137.26,-31.56h74.08c0.3,0.01 0.59,0.06 0.87,0.1l3.9,0.56 3.89,-0.56c1.24,-0.17 2.88,-0.14 4.45,1.43l165.23,165.23a5.22,5.22 0,0 1,-0.01 7.38z" />
+</vector>

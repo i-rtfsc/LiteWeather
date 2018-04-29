@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (c) 2018 anqi.huang@outlook.com
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/common_dimen_big"
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layout_notification"
+            style="@style/core_ItemStyle">
+
+            <TextView
+                style="@style/core_SettingTextStyle"
+                android:layout_alignParentLeft="true"
+                android:paddingRight="0dp"
+                android:text="@string/notification_show" />
+
+            <com.suke.widget.SwitchButton
+                android:id="@+id/switch_notification"
+                style="@style/core_SettingSwitchStyle"
+                android:layout_alignParentRight="true"
+                android:paddingRight="16dp"
+                app:sb_show_indicator="false" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_size_secondary"
+                android:layout_alignParentBottom="true"
+                android:background="@color/divider_secondary" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_night"
+            style="@style/core_ItemStyle">
+
+            <TextView
+                style="@style/core_SettingTextStyle"
+                android:layout_alignParentLeft="true"
+                android:paddingRight="0dp"
+                android:text="@string/show_night" />
+
+            <com.suke.widget.SwitchButton
+                android:id="@+id/switch_night"
+                style="@style/core_SettingSwitchStyle"
+                android:layout_alignParentRight="true"
+                android:paddingRight="12dp"
+                app:sb_show_indicator="false" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_size_secondary"
+                android:layout_alignParentBottom="true"
+                android:background="@color/divider_secondary" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_long_click"
+            style="@style/core_ItemStyle"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/core_SettingTextStyle"
+                android:layout_alignParentLeft="true"
+                android:paddingRight="0dp"
+                android:text="@string/long_click" />
+
+            <com.suke.widget.SwitchButton
+                android:id="@+id/switch_long_click"
+                style="@style/core_SettingSwitchStyle"
+                android:layout_alignParentRight="true"
+                android:paddingRight="12dp"
+                app:sb_show_indicator="false" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_size_secondary"
+                android:layout_alignParentBottom="true"
+                android:background="@color/divider_secondary" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/city"
+                style="@style/core_SettingTextStyle"
+                android:layout_alignParentLeft="true"
+                android:text="@string/city" />
+
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/city"
+                app:el_duration="360"
+                app:el_expanded="true">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/city_follow_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/common_dimen_small" />
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_size_secondary"
+                android:layout_alignParentBottom="true"
+                android:background="@color/divider_secondary" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/weather_key"
+                style="@style/core_SettingTextStyle"
+                android:layout_alignParentLeft="true"
+                android:text="@string/weather_port" />
+
+            <TextView
+                android:id="@+id/weather_port"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/setting_text_height"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:paddingEnd="24dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_size_small" />
+
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable_weather_port"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/weather_key"
+                app:el_duration="360"
+                app:el_expanded="true">
+
+                <ListView
+                    android:id="@+id/listView_weather_port"
+                    android:layout_width="match_parent"
+                    android:layout_height="146dp"
+                    android:choiceMode="singleChoice"
+                    android:divider="@color/divider_secondary"
+                    android:dividerHeight="1px" />
+
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_size_secondary"
+                android:layout_alignParentBottom="true"
+                android:background="@color/divider_secondary" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/update_allow"
+                style="@style/core_SettingTextStyle"
+                android:layout_alignParentLeft="true"
+                android:text="@string/update_allow" />
+
+            <TextView
+                android:id="@+id/update_schedule"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/setting_text_height"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:paddingEnd="24dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_size_small" />
+
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable_schedule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/update_schedule"
+                app:el_duration="360"
+                app:el_expanded="true">
+
+                <ListView
+                    android:id="@+id/listView_schedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="195dp"
+                    android:choiceMode="singleChoice"
+                    android:divider="@color/divider_secondary"
+                    android:dividerHeight="1px" />
+
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_size_secondary"
+                android:layout_alignParentBottom="true"
+                android:background="@color/divider_secondary" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/about"
+                style="@style/core_SettingTextStyle"
+                android:layout_alignParentLeft="true"
+                android:text="@string/about" />
+
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/about"
+                app:el_duration="360"
+                app:el_expanded="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/email"
+                        style="@style/core_SecondaryItemStyle">
+
+                        <ImageView
+                            android:id="@+id/email_icon"
+                            style="@style/core_CommonIconImage"
+                            android:layout_alignParentLeft="true"
+                            app:srcCompat="@drawable/svg_email" />
+
+                        <TextView
+                            style="@style/core_SecondarySettingTextStyle"
+                            android:layout_toRightOf="@id/email_icon"
+                            android:text="@string/email" />
+
+                        <TextView
+                            style="@style/core_SecondarySummaryTextStyle"
+                            android:layout_alignParentRight="true"
+                            android:text="@string/email_account" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/divider_size_secondary"
+                            android:layout_alignParentBottom="true"
+                            android:background="@color/divider_secondary" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/github"
+                        style="@style/core_SecondaryItemStyle">
+
+                        <ImageView
+                            android:id="@+id/github_icon"
+                            style="@style/core_CommonIconImage"
+                            android:layout_alignParentLeft="true"
+                            app:srcCompat="@drawable/svg_github" />
+
+                        <TextView
+                            style="@style/core_SecondarySettingTextStyle"
+                            android:layout_toRightOf="@id/github_icon"
+                            android:text="@string/github" />
+
+                        <TextView
+                            style="@style/core_SecondarySummaryTextStyle"
+                            android:layout_alignParentRight="true"
+                            android:text="@string/github_account" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/divider_size_secondary"
+                            android:layout_alignParentBottom="true"
+                            android:background="@color/divider_secondary" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/versoin"
+                        style="@style/core_SecondaryItemStyle">
+
+                        <ImageView
+                            android:id="@+id/versoin_icon"
+                            style="@style/core_CommonIconImage"
+                            android:layout_alignParentLeft="true"
+                            app:srcCompat="@drawable/svg_version" />
+
+                        <TextView
+                            style="@style/core_SecondarySettingTextStyle"
+                            android:layout_toRightOf="@id/versoin_icon"
+                            android:text="@string/version" />
+
+                        <TextView
+                            android:id="@+id/versoin_txt"
+                            style="@style/core_SecondarySummaryTextStyle"
+                            android:layout_alignParentRight="true"
+                            android:text="@string/github_account" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/divider_size_secondary"
+                            android:layout_alignParentBottom="true"
+                            android:background="@color/divider_secondary" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/developer"
+                        style="@style/core_SecondaryItemStyle">
+
+                        <ImageView
+                            android:id="@+id/developer_icon"
+                            style="@style/core_CommonIconImage"
+                            android:layout_alignParentLeft="true"
+                            app:srcCompat="@drawable/svg_developer" />
+
+                        <TextView
+                            style="@style/core_SecondarySettingTextStyle"
+                            android:layout_toRightOf="@id/developer_icon"
+                            android:text="@string/developer" />
+
+                        <TextView
+                            style="@style/core_SecondarySummaryTextStyle"
+                            android:layout_alignParentRight="true"
+                            android:text="@string/developer_count" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/divider_size_secondary"
+                            android:layout_alignParentBottom="true"
+                            android:background="@color/divider_secondary" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_size_secondary"
+                android:layout_alignParentBottom="true"
+                android:background="@color/divider_secondary" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/open_library"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/open_library_txt"
+                style="@style/core_SettingTextStyle"
+                android:layout_alignParentLeft="true"
+                android:text="@string/open_library" />
+
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable_open_library"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/open_library_txt"
+                app:el_duration="360"
+                app:el_expanded="true">
+
+                <ListView
+                    android:id="@+id/listView_open_library"
+                    android:layout_width="match_parent"
+                    android:layout_height="520dp"
+                    android:divider="@color/divider_secondary"
+                    android:dividerHeight="1px" />
+
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_size_secondary"
+                android:layout_alignParentBottom="true"
+                android:background="@color/divider_secondary" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:gravity="right|bottom"
+            android:text="@string/all_right_reserved"
+            android:textColor="@color/text_secondary"
+            android:textSize="12dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

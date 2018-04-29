@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  Copyright (c) 2018 anqi.huang@outlook.com
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:autoMirrored="true"
+    android:viewportHeight="1024"
+    android:viewportWidth="1024">
+    <path
+        android:fillColor="@color/white"
+        android:pathData="M602.2,512.5L818,512.5c0,113.2 -61.5,212 -152.9,264.9L557.2,590.6c26.9,-15.6 45,-44.7 45,-78.1zM467,590.6L359.1,777.4c-91.4,-52.9 -152.9,-151.7 -152.9,-264.9h215.7c0,33.4 18.2,62.5 45.1,78.1zM512.1,448.1c-35.6,0 -64.4,28.8 -64.4,64.4s28.8,64.4 64.4,64.4c35.6,0 64.4,-28.8 64.4,-64.4 0,-35.6 -28.8,-64.4 -64.4,-64.4zM512.1,206.6c55.7,0 108,14.9 153,41L557.2,434.4c-13.3,-7.7 -28.7,-12.1 -45.1,-12.1 -16.4,0 -31.8,4.4 -45.1,12.1L359.1,247.6c45,-26.1 97.3,-41 153,-41z" />
+    <path
+        android:fillColor="@color/white"
+        android:pathData="M755.7,268.9C693.4,206.6 607.2,168 512.1,168s-181.3,38.6 -243.6,100.9c-62.3,62.3 -100.9,148.5 -100.9,243.6s38.6,181.3 100.9,243.6C330.8,818.4 417,857 512.1,857s181.3,-38.6 243.6,-100.9c62.3,-62.3 100.9,-148.5 100.9,-243.6S818,331.2 755.7,268.9zM512.1,129.4c105.8,0 201.6,42.9 270.9,112.2 69.3,69.4 112.2,165.1 112.2,270.9 0,105.8 -42.9,201.6 -112.2,270.9 -69.3,69.3 -165.1,112.2 -270.9,112.2 -105.8,0 -201.6,-42.9 -270.9,-112.2C171.8,714.1 129,618.3 129,512.5c0,-105.8 42.9,-201.6 112.2,-270.9 69.3,-69.4 165.1,-112.2 270.9,-112.2z" />
+</vector>

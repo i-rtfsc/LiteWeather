@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.journeyOS.liteweather">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:name=".WeatherApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/svg_core_icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/core_BaseAppTheme">
+
+        <activity
+            android:name=".ui.WeatherActivity"
+            android:theme="@style/weather_TransparentActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".scheduleJob.AlarmService" />
+
+        <service
+            android:name=".scheduleJob.JobSchedulerService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <receiver android:name=".remoteviews.WeatherWidgetProvider">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/weather_widget_info" />
+            <intent-filter>
+                <action android:name="update_ui" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+        </receiver>
+
+    </application>
+
+</manifest>

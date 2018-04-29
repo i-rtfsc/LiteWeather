@@ -1,0 +1,26 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.journeyOS.plugins">
+
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="true">
+
+        <activity
+            android:name=".city.ui.search.SearchActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+
+        <!--<activity-->
+            <!--android:name=".settings.ui.AboutActivity"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:windowSoftInputMode="adjustPan">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.journeyOS.plugins.action.ABOUT_ACTIVITY"/>-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+
+    </application>
+
+</manifest>

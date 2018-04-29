@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  Copyright (c) 2018 anqi.huang@outlook.com
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<resources>
+    <string name="notification_show">显示通知栏</string>
+    <string name="update_allow">自动更新天气</string>
+    <string name="show_night">自动夜间皮肤</string>
+    <string name="long_click">长按换肤</string>
+    <string name="city">城市管理</string>
+    <string name="about">关于</string>
+    <string name="weather_port">查询天气帐号</string>
+    <string name="long_click_toogle_shown">您已经处于开发者模式，无需进行此操作。</string>
+    <string name="long_click_toogle_count">快速点击5次即可打开开发者模式（页面出现长按换肤开关）。</string>
+    <string name="connect_us">联系我们</string>
+    <string name="open_library">开源库</string>
+    <string name="email">邮箱</string>
+    <string name="email_account">anqi.huang@outlook.com</string>
+    <string name="github">github</string>
+    <string name="github_account">https://github.com/journeyOS</string>
+    <string name="version">版本号</string>
+    <string name="developer">开发者</string>
+    <string name="developer_count">快速点击5次即可打开开发者模式</string>
+    <string name="all_right_reserved">Copyright © 2018 journeyOS. All Rights Reserved.</string>
+</resources>

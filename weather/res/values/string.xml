@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  Copyright (c) 2018 anqi.huang@outlook.com
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<resources>
+    <string name="weather_add_city_hand_mode">定位失败,请手动添加城市!</string>
+    <string name="weather_refreshing">正在更新…</string>
+    <string name="weather_refresh_fail">更新失败!</string>
+    <string name="weather_refresh_succeed">更新成功!</string>
+    <string name="unit_t">°</string>
+    <string name="unit_air">μg/m³</string>
+    <string name="unit_km">km</string>
+    <string name="unit_mm">mm</string>
+    <string name="unit_percent">%</string>
+    <string name="unit_hpa">hpa</string>
+    <string name="weather_detail">详情</string>
+    <string name="weather_apparent_temperature">体感温度</string>
+    <string name="weather_humidity">湿度</string>
+    <string name="weather_visibility">能见度</string>
+    <string name="weather_precipitation">降雨量</string>
+    <string name="weather_time">时间</string>
+    <string name="weather_wind_level">风力</string>
+    <string name="weather_day">每日</string>
+    <string name="weather_hour">每时</string>
+    <string name="weather_air_quality">空气质量</string>
+    <string name="weather_air_pm25">PM2.5</string>
+    <string name="weather_air_pm10">PM10</string>
+    <string name="weather_air_so2">SO2</string>
+    <string name="weather_air_no2">NO2</string>
+    <string name="weather_wind_speed">风速</string>
+    <string name="weather_wind_direction">风向</string>
+    <string name="weather_atm">气压</string>
+    <string name="weather_sun_and_wind">太阳和风</string>
+    <string name="weather_life">生活指数</string>
+    <string name="weather_life_comf">综合</string>
+    <string name="weather_life_drsg">穿衣</string>
+    <string name="weather_life_uv">紫外线</string>
+    <string name="weather_life_sport">运动</string>
+    <string name="weather_life_flu">感冒</string>
+    <string name="weather_life_trav">旅游</string>
+    <string name="weather_life_cw">洗车</string>
+    <string name="city_unknown">未知城市</string>
+    <string name="city_manager">城市管理</string>
+    <string name="settings">设置</string>
+    <string name="weather_support">数据来源：和风天气（http://www.heweather.com）</string>
+</resources>
