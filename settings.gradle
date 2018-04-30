@@ -31,7 +31,8 @@ def initVersion() {
     gradle.ext.calligraphy = '2.2.0'
     gradle.ext.butterknife = '8.8.1'
     gradle.ext.gson = '2.8.1'
-    gradle.ext.retrofit2 ='2.1.0'
+    ////https://github.com/square/retrofit/issues/2718
+    gradle.ext.retrofit2 ='2.3.0'
     gradle.ext.tinypinyin = '1.0.0'
     gradle.ext.stetho ='1.5.0'
     gradle.ext.leakcanary ='1.5.4'
