@@ -30,6 +30,7 @@ public class Constant {
     public static final String WEATHER_KEY = "weather_key";
     public static final String ENABLE_LONGE_CLICK = "enable_long_click";
     public static final String SHOW_LONG_CLICK_TOOGLE = "show_long_click_toogle";
+    public static final String ENABLE_CIRCLE = "circle";
 
     public static final String USER = "Solo";
     public static final String EMAIL = "anqi.huang@outlook.com";

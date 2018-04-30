@@ -30,6 +30,7 @@ public class Messages extends Message {
     public static final int MSG_CITY_ADD = BASE << 6;
     public static final int MSG_CITY_DELETE = BASE << 7;
     public static final int MSG_ANIMATION = BASE << 8;
+    public static final int MSG_CIRCLE = BASE << 9;
 
     public int what;
 

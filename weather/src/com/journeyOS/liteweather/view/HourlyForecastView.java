@@ -29,9 +29,12 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.journeyOS.base.persistence.SpUtils;
 import com.journeyOS.liteweather.R;
 
 import java.util.List;
+
+import static com.journeyOS.base.Constant.ENABLE_CIRCLE;
 
 /**
  * 一天24h预报
@@ -110,8 +113,36 @@ public class HourlyForecastView extends View {
             final int index = i + data_length_offset;
             x[i] = index * dW + dW / 2f;
             y[i] = dCenterY - d.offsetPercent * dH * smallerPercent;
-            // ///draw the froecast data'text
-            canvas.drawText(d.temperature + getContext().getResources().getString(R.string.unit_t), x[i], y[i] - textSize + textOffset, paint);
+
+            boolean isCircle = SpUtils.getInstant().getBoolean(ENABLE_CIRCLE, false);
+            if (isCircle) {
+                int CircleMaxY = 0;
+                int CircleMaxYPre = 0;
+                if (length >= 2 && i >= 1) {
+                    int preT = hourlyDataList.get(i - 1).temperature;
+                    int nowT = hourlyDataList.get(i).temperature;
+                    if ((preT - nowT) > 3) {
+                        CircleMaxY = 7 * Math.abs(preT - nowT) / 3;
+                    } else if (-(preT - nowT) > 3) {
+                        CircleMaxY = -7 * Math.abs(preT - nowT) / 3;
+                    }
+                    if (length > i + 1) {
+                        int afterT = hourlyDataList.get(i + 1).temperature;
+                        if ((nowT - afterT) > 3) {
+                            CircleMaxYPre = -4 * Math.abs(nowT - afterT) / 3;
+                        } else if (-(nowT - afterT) > 3) {
+                            CircleMaxYPre = 4 * Math.abs(nowT - afterT) / 3;
+                        }
+                    }
+                }
+                // circle
+                canvas.drawCircle(x[i], y[i] - CircleMaxYPre - CircleMaxY, 10, paint);
+                // draw the froecast data'text
+                canvas.drawText(d.temperature + getContext().getResources().getString(R.string.unit_t), x[i], y[i] - textSize + textOffset + (CircleMaxY > 0 || CircleMaxYPre > 0 ? -16 : 0), paint);
+            } else {
+                // draw the froecast data'text
+                canvas.drawText(d.temperature + getContext().getResources().getString(R.string.unit_t), x[i], y[i] - textSize + textOffset, paint);
+            }
 
             //降水概率Java字符'\ue612'xml字符&#xe612;
             if (i == 0) {

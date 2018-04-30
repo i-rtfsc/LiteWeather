@@ -29,10 +29,13 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.journeyOS.base.persistence.SpUtils;
 import com.journeyOS.base.utils.TimeUtils;
 import com.journeyOS.liteweather.R;
 
 import java.util.List;
+
+import static com.journeyOS.base.Constant.ENABLE_CIRCLE;
 
 /**
  * 一周天气预报
@@ -43,12 +46,9 @@ public class DailyForecastView extends View {
 
     private int width, height;
     private float percent = 0f;
-    ;
     private final float density;
-//    private List<WeatherData.DailyEntity> forecastList;
     private Path tmpMaxPath = new Path();
     private Path tmpMinPath = new Path();
-//    private Data[] datas;
     private List<DailyData> dailyDataList;
 
     private final TextPaint paint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
@@ -119,11 +119,37 @@ public class DailyForecastView extends View {
         for (int i = 0; i < length; i++) {
             final DailyData d = dailyDataList.get(i);
             x[i] = i * dW + dW / 2f;
-            ;
             yMax[i] = dCenterY - d.maxOffsetPercent * dH;
             yMin[i] = dCenterY - d.minOffsetPercent * dH;
 
-            canvas.drawText(d.Tmax + getContext().getString(R.string.unit_t), x[i], yMax[i] - textSize + textOffset, paint);
+            boolean isCircle = SpUtils.getInstant().getBoolean(ENABLE_CIRCLE, false);
+            if (isCircle) {
+                int CircleMaxY = 0;
+                int CircleMaxYPre = 0;
+                if (length >= 2 && i >= 1) {
+                    int preT = dailyDataList.get(i - 1).Tmax;
+                    int nowT = dailyDataList.get(i).Tmax;
+                    if ((preT - nowT) > 3) {
+                        CircleMaxY = 7 * Math.abs(preT - nowT) / 3;
+                    } else if (-(preT - nowT) > 3) {
+                        CircleMaxY = -7 * Math.abs(preT - nowT) / 3;
+                    }
+                    if (length > i + 1) {
+                        int afterT = dailyDataList.get(i + 1).Tmax;
+                        if ((nowT - afterT) > 3) {
+                            CircleMaxYPre = -4 * Math.abs(nowT - afterT) / 3;
+                        } else if (-(nowT - afterT) > 3) {
+                            CircleMaxYPre = 4 * Math.abs(nowT - afterT) / 3;
+                        }
+                    }
+                }
+                // circle
+                canvas.drawCircle(x[i], yMax[i] - CircleMaxYPre - CircleMaxY, 10, paint);
+                canvas.drawCircle(x[i], yMin[i], 10, paint);
+                canvas.drawText(d.Tmax + getContext().getString(R.string.unit_t), x[i], yMax[i] - textSize + textOffset + (CircleMaxY > 0 || CircleMaxYPre > 0 ? -16 : 0), paint);
+            } else {
+                canvas.drawText(d.Tmax + getContext().getString(R.string.unit_t), x[i], yMax[i] - textSize + textOffset, paint);
+            }
             canvas.drawText(d.Tmin + getContext().getString(R.string.unit_t), x[i], yMin[i] + textSize + textOffset, paint);
             canvas.drawText(d.weather + "", x[i], textSize * 13.5f + textOffset, paint);
             canvas.drawText(d.pop + getContext().getString(R.string.unit_percent), x[i], textSize * 15f + textOffset, paint);

@@ -78,6 +78,31 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/circle_layout"
+            style="@style/core_ItemStyle">
+
+            <TextView
+                style="@style/core_SettingTextStyle"
+                android:layout_alignParentLeft="true"
+                android:paddingRight="0dp"
+                android:text="@string/circle" />
+
+            <com.suke.widget.SwitchButton
+                android:id="@+id/switch_circle"
+                style="@style/core_SettingSwitchStyle"
+                android:layout_alignParentRight="true"
+                android:paddingRight="12dp"
+                app:sb_show_indicator="false" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_size_secondary"
+                android:layout_alignParentBottom="true"
+                android:background="@color/divider_secondary" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/layout_long_click"
             style="@style/core_ItemStyle"
             android:visibility="gone">

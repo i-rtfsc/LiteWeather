@@ -58,6 +58,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.journeyOS.base.Constant.ENABLE_CIRCLE;
 import static com.journeyOS.base.Constant.ENABLE_LONGE_CLICK;
 import static com.journeyOS.base.Constant.ENABLE_NIGHT;
 import static com.journeyOS.base.Constant.NOTIFICATION_ALLOW;
@@ -106,6 +107,9 @@ public class SettingFragment extends BaseFragment {
     @BindView(R2.id.listView_open_library)
     ListView mListViewOpenLibrary;
 
+    @BindView(R2.id.switch_circle)
+    SwitchButton mSwitchCircle;
+
     private CityWeatherAdapter mSubscribeCityAdapter;
     private AddData mAddData = new AddData();
     private CityModel mCityModel;
@@ -141,6 +145,7 @@ public class SettingFragment extends BaseFragment {
         initNotifitionSwitch();
         initNightSwitch();
         initLongClickSwitch();
+        initCircleSwitch();
         initWeatherKey();
         initUpdateSchedule();
         initCity();
@@ -181,6 +186,20 @@ public class SettingFragment extends BaseFragment {
             @Override
             public void onCheckedChanged(SwitchButton view, boolean isChecked) {
                 SpUtils.getInstant().put(ENABLE_LONGE_CLICK, isChecked);
+            }
+        });
+    }
+
+    private void initCircleSwitch() {
+        mSwitchCircle.setChecked(SpUtils.getInstant().getBoolean(ENABLE_CIRCLE, false));
+        mSwitchCircle.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SwitchButton view, boolean isChecked) {
+                SpUtils.getInstant().put(ENABLE_CIRCLE, isChecked);
+                Messages msg = new Messages();
+                msg.what = Messages.MSG_CIRCLE;
+                msg.arg1 = isChecked ? 1 : 0;
+                Router.getDefault().post(msg);
             }
         });
     }

@@ -19,6 +19,7 @@
     <string name="update_allow">自动更新天气</string>
     <string name="show_night">自动夜间皮肤</string>
     <string name="long_click">长按换肤</string>
+    <string name="circle">折线画点</string>
     <string name="city">城市管理</string>
     <string name="about">关于</string>
     <string name="weather_port">查询天气帐号</string>

@@ -21,7 +21,6 @@ import android.app.AlertDialog;
 import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
@@ -452,6 +451,9 @@ public class WeatherFragment extends BaseFragment implements RouterListener {
     public void onShowMessage(Message message) {
         Messages msg = (Messages) message;
         switch (msg.what) {
+            case Messages.MSG_CIRCLE:
+                updateWeatherUI(mWeatherData);
+                break;
         }
     }
 }
