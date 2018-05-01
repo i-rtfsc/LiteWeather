@@ -41,7 +41,7 @@ public class AppConfig {
         initCrashReport(context);
         initFile();
         initSharedPreference(context);
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/weather_font.ttf").setFontAttrId(R.attr.fontPath).build());
+//        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/weather_font.ttf").setFontAttrId(R.attr.fontPath).build());
     }
 
     private static void initCrashReport(Context context) {
