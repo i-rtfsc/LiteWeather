@@ -1,7 +1,4 @@
-# Lite 
-@(Android)[app]
-
-[TOC]
+# Lite Weather
 
 ## Introduction
 &#160; &#160; &#160; &#160;There are quite a few patterns out there for app architectures, such as MVP, MVVM, and unidirectional. I’m a huge fan of unidirectional, and I like MVVM too. There are 3 parts of M-V-VM, the Model, View, and ViewModel. Let’s take a look at what each of these are.
@@ -14,10 +11,14 @@
 - Model — This is where your underlying data is actually stored. The model can be backed by local persistence stores, and synchronized with remote data sources. You can use Room to make it easier to work with SQLLite (on device) and have Room generate the ORM layer for you. Or you can use Firebase for persistence, which automagically syncs its state across multiple platforms. You have a lot of flexibility in what you choose. You can even use something like Redux in addition to Firebase to be your Model.
 
 The following diagram shows all the modules in our recommended architecture and how they interact with one another
-
+![image](https://github.com/journeyOS/LiteWeather/blob/master/resource/final-architecture.png)
 
 ## Lite Weather
 &#160; &#160; &#160; &#160;A sample Android project demonstrating the use of Retrofit and MVVM to interact with web services.
+[Download App](https://github.com/journeyOS/LiteWeather/blob/master/app_release/LiteWeather.apk)
+![image](https://github.com/journeyOS/LiteWeather/blob/master/resource/weather_1.png)
+![image](https://github.com/journeyOS/LiteWeather/blob/master/resource/weather_2.png)
+![image](https://github.com/journeyOS/LiteWeather/blob/master/resource/settings.png)
 
 ## Docs
 [Guide](https://developer.android.com/topic/libraries/architecture/guide)
