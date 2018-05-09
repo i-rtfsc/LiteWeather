@@ -28,6 +28,7 @@ import com.journeyOS.base.adapter.BaseRecyclerAdapter;
 import com.journeyOS.base.adapter.BaseViewHolder;
 import com.journeyOS.base.utils.BaseUtils;
 import com.journeyOS.core.api.cityprovider.ICityProvider;
+import com.journeyOS.literouter.RouterMsssage;
 import com.journeyOS.plugins.R;
 import com.journeyOS.plugins.R2;
 import com.journeyOS.core.CoreManager;
@@ -35,7 +36,6 @@ import com.journeyOS.core.Messages;
 import com.journeyOS.core.api.cityprovider.City;
 import com.journeyOS.core.api.weatherprovider.IWeatherProvider;
 import com.journeyOS.core.location.ILocationApi;
-import com.journeyOS.literouter.Message;
 import com.journeyOS.literouter.Router;
 import com.journeyOS.literouter.RouterListener;
 
@@ -118,7 +118,7 @@ public class HeaderHolder extends BaseViewHolder<HeaderData> implements RouterLi
     }
 
     @Override
-    public void onShowMessage(Message message) {
+    public void onShowMessage(RouterMsssage message) {
         Messages msg = (Messages) message;
         switch (msg.what) {
             case Messages.MSG_LOCATION:

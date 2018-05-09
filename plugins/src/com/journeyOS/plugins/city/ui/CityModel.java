@@ -30,8 +30,8 @@ import com.journeyOS.core.api.weatherprovider.WeatherData;
 import com.journeyOS.core.base.StatusDataResource;
 import com.journeyOS.core.location.ILocationApi;
 import com.journeyOS.core.viewmodel.BaseViewModel;
-import com.journeyOS.literouter.Message;
 import com.journeyOS.literouter.RouterListener;
+import com.journeyOS.literouter.RouterMsssage;
 import com.journeyOS.litetask.Task;
 import com.journeyOS.litetask.TaskScheduler;
 import com.journeyOS.plugins.city.ui.adapter.FollowedCityData;
@@ -141,7 +141,7 @@ public class CityModel extends BaseViewModel implements RouterListener {
     }
 
     @Override
-    public void onShowMessage(Message message) {
+    public void onShowMessage(RouterMsssage message) {
         Messages msg = (Messages) message;
         switch (msg.what) {
             case Messages.MSG_LOCATION:

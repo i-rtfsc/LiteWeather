@@ -17,9 +17,9 @@
 package com.journeyOS.core;
 
 
-import com.journeyOS.literouter.Message;
+import com.journeyOS.literouter.RouterMsssage;
 
-public class Messages extends Message {
+public class Messages extends RouterMsssage {
     public static final int BASE = 1;
     public static final int MSG_LOCATION = BASE << 0;
     public static final int MSG_ALLOW_NOTIFICATION = BASE << 1;

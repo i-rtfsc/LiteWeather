@@ -39,8 +39,8 @@ import com.journeyOS.core.api.cityprovider.ICityProvider;
 import com.journeyOS.core.base.BaseActivity;
 import com.journeyOS.core.base.BaseFragment;
 import com.journeyOS.core.permission.IPermissionApi;
-import com.journeyOS.literouter.Message;
 import com.journeyOS.literouter.RouterListener;
+import com.journeyOS.literouter.RouterMsssage;
 import com.journeyOS.liteweather.R;
 import com.journeyOS.liteweather.sky.SkyType;
 import com.journeyOS.liteweather.sky.SkyView;
@@ -216,7 +216,7 @@ public class WeatherActivity extends BaseActivity implements RouterListener {
 
 
     @Override
-    public void onShowMessage(Message message) {
+    public void onShowMessage(RouterMsssage message) {
         Messages msg = (Messages) message;
         switch (msg.what) {
             case Messages.MSG_DRAWER_TYPE_UPDATE:

@@ -22,9 +22,9 @@ import android.app.job.JobService;
 import android.os.Build;
 
 import com.journeyOS.core.Messages;
-import com.journeyOS.literouter.Message;
 import com.journeyOS.literouter.Router;
 import com.journeyOS.literouter.RouterListener;
+import com.journeyOS.literouter.RouterMsssage;
 import com.journeyOS.liteweather.remoteviews.RemoteViewsHelper;
 
 
@@ -57,7 +57,7 @@ public class JobSchedulerService extends JobService implements RouterListener {
     }
 
     @Override
-    public void onShowMessage(Message message) {
+    public void onShowMessage(RouterMsssage message) {
         Messages msg = new Messages();
         switch (msg.what) {
             case Messages.MSG_UPDATE_NOTIFICATION:
