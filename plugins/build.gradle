@@ -39,11 +39,9 @@ dependencies {
     implementation project(':core')
 
     implementation "net.cachapa.expandablelayout:expandablelayout:$gradle.expandablelayout"
-//    implementation "com.github.medyo:android-about-page:$gradle.about_page"
     implementation "com.github.zcweng:switch-button:0.0.3@aar"
 
-    annotationProcessor project(':literouter-compiler')
-
+    annotationProcessor "com.journeyOS:literouter-compiler:$gradle.literouter_compiler"
     annotationProcessor "android.arch.persistence.room:compiler:$gradle.room_compiler"
     annotationProcessor "com.jakewharton:butterknife-compiler:$gradle.butterknife"
 }

@@ -86,12 +86,11 @@ dependencies {
     implementation project(':core')
     implementation project(':plugins')
 
-    annotationProcessor project(':literouter-compiler')
-
     implementation "com.android.support:support-v4:$gradle.appcompat"
     implementation "com.android.support:appcompat-v7:$gradle.appcompat"
     implementation "com.tuyenmonkey:mkloader:$gradle.mkloader"
 
+    annotationProcessor "com.journeyOS:literouter-compiler:$gradle.literouter_compiler"
     annotationProcessor "com.jakewharton:butterknife-compiler:$gradle.butterknife"
     annotationProcessor "android.arch.persistence.room:compiler:$gradle.room_compiler"
     annotationProcessor "android.arch.lifecycle:compiler:$gradle.lifecycle_compiler"
