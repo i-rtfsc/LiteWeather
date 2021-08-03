@@ -23,7 +23,7 @@ import com.journeyOS.core.AppHttpClient;
 import com.journeyOS.core.CoreManager;
 import com.journeyOS.core.api.cityprovider.City;
 import com.journeyOS.core.api.cityprovider.ICityProvider;
-import com.journeyOS.core.api.weatherprovider.WeatherData;
+import com.journeyOS.core.bean.weather.WeatherData;
 import com.journeyOS.core.base.StatusDataResource;
 import com.journeyOS.literouter.annotation.ARouterInject;
 import com.journeyOS.liteweather.R;

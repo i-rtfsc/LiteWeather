@@ -18,8 +18,8 @@ package com.journeyOS.liteweather.entity;
 
 
 import com.journeyOS.base.utils.BaseUtils;
-import com.journeyOS.base.utils.LogUtils;
-import com.journeyOS.core.api.weatherprovider.WeatherData;
+import com.journeyOS.base.utils.SmartLog;
+import com.journeyOS.core.bean.weather.WeatherData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,7 +122,7 @@ public class WeatherTransverter {
             }
 
         } catch (Exception e) {
-            LogUtils.e(TAG, "convert HeWeather error = " + e);
+            SmartLog.e(TAG, "convert HeWeather error = " + e);
         }
 
         return weatherData;

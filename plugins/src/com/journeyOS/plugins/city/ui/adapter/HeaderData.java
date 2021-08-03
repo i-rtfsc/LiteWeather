@@ -16,7 +16,7 @@
 
 package com.journeyOS.plugins.city.ui.adapter;
 
-import android.support.v4.util.Pair;
+import androidx.core.util.Pair;
 
 import com.journeyOS.base.adapter.BaseAdapterData;
 import com.journeyOS.plugins.R;

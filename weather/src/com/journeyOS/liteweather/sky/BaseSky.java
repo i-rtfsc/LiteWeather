@@ -19,10 +19,6 @@ package com.journeyOS.liteweather.sky;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.GradientDrawable;
-import android.util.Log;
-import android.view.animation.AnimationUtils;
-
-import com.journeyOS.base.utils.LogUtils;
 
 
 public abstract class BaseSky {

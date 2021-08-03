@@ -20,7 +20,7 @@ package com.journeyOS.liteweather.utils;
 import android.text.TextUtils;
 
 import com.journeyOS.base.persistence.SpUtils;
-import com.journeyOS.core.api.weatherprovider.WeatherData;
+import com.journeyOS.core.bean.weather.WeatherData;
 import com.journeyOS.liteweather.sky.SkyType;
 
 import java.text.SimpleDateFormat;

@@ -16,11 +16,11 @@
 
 package com.journeyOS.core.viewmodel;
 
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.support.annotation.MainThread;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import androidx.annotation.MainThread;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * 所有的ViewModel在此获取，便于方便管理
@@ -47,7 +47,6 @@ public class ModelProvider {
      */
     @MainThread
     public static <T extends BaseViewModel> T getModel(Context activity, Class<T> viewModel) {
-
         if (!(activity instanceof FragmentActivity)) {
             throw new RuntimeException("context must a FragmentActivity instance");
         }

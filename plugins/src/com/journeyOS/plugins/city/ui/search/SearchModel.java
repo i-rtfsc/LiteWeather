@@ -16,7 +16,7 @@
 
 package com.journeyOS.plugins.city.ui.search;
 
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.journeyOS.plugins.city.repository.ICityRepositoryApi;
 import com.journeyOS.plugins.city.ui.adapter.CityInfoData;
@@ -73,7 +73,7 @@ public class SearchModel extends BaseViewModel {
     }
 
     void matchCities(final String key) {
-        TaskScheduler.execute(new Runnable() {
+        TaskScheduler.getInstance().getExecutor("TODO").execute(new Runnable() {
             @Override
             public void run() {
                 List<City> allCity = CoreManager.getImpl(ICityRepositoryApi.class).matchingCity(key);

@@ -17,14 +17,12 @@
 package com.journeyOS.plugins.city.ui;
 
 
-import android.arch.lifecycle.Observer;
-import android.content.DialogInterface;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.lifecycle.Observer;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.journeyOS.base.persistence.SpUtils;
 import com.journeyOS.plugins.R;
 import com.journeyOS.plugins.R2;
 import com.journeyOS.plugins.city.ui.adapter.AddData;

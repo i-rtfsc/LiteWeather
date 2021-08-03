@@ -19,7 +19,7 @@ package com.journeyOS.base.utils;
 import android.os.Build;
 import android.util.Log;
 
-public class LogUtils {
+public class SmartLog {
     public static final String TAG = "LiteWeather";
     //add user type for more debug log with beta user...
     public final static boolean BUILD_TYPE = "eng".equals(Build.TYPE) || "userdebug".equals(Build.TYPE) || "user".equals(Build.TYPE);

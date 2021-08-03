@@ -20,7 +20,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 
-public class FontTextView extends android.support.v7.widget.AppCompatTextView {
+public class FontTextView extends androidx.appcompat.widget.AppCompatTextView {
 
     public FontTextView(Context context, AttributeSet attrs) {
         super(context, attrs);

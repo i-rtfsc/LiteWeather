@@ -16,11 +16,12 @@
 
 package com.journeyOS.core.api.weatherprovider;
 
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.LiveData;
 import android.content.Context;
 
 import com.journeyOS.core.api.ICoreApi;
 import com.journeyOS.core.base.StatusDataResource;
+import com.journeyOS.core.bean.weather.WeatherData;
 
 import java.util.List;
 

@@ -35,20 +35,25 @@ import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
 public class AppHttpClient {
-
     private static final String BASE_URL = "https://free-api.heweather.com/s6/";
     private static final int HTTP_RESPONSE_DISK_CACHE_MAX_SIZE = 10 * 1024 * 1024;
     private static final int MAX_AGE = 60 * 10;
     private static final int MAX_STALE = 60 * 60 * 24;
     private volatile static AppHttpClient sAppHttpClient;
-    private Map<String, Object> serviceByType = new HashMap<>();
+    private Map<String, Object> mService = new HashMap<>();
     private Retrofit mRetrofit;
 
     private AppHttpClient() {
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(cacheInterceptor()).cache(cache()).build();
-        mRetrofit = new Retrofit.Builder().baseUrl(BASE_URL).client(client).addConverterFactory(GsonConverterFactory.create()).build();
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(cacheInterceptor())
+                .cache(cache())
+                .build();
+        mRetrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
 
@@ -92,12 +97,12 @@ public class AppHttpClient {
 
     public synchronized <T> T getService(Class<T> apiInterface) {
         String serviceName = apiInterface.getName();
-        if (BaseUtils.isNull(serviceByType.get(serviceName))) {
+        if (BaseUtils.isNull(mService.get(serviceName))) {
             T service = mRetrofit.create(apiInterface);
-            serviceByType.put(serviceName, service);
+            mService.put(serviceName, service);
             return service;
         } else {
-            return (T) serviceByType.get(serviceName);
+            return (T) mService.get(serviceName);
         }
     }
 

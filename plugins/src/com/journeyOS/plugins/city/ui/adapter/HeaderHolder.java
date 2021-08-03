@@ -17,9 +17,9 @@
 package com.journeyOS.plugins.city.ui.adapter;
 
 import android.app.Activity;
-import android.support.v4.util.Pair;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.util.Pair;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 

@@ -17,13 +17,13 @@
 package com.journeyOS.plugins.city.repository;
 
 import android.os.Handler;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.WorkerThread;
 
 import com.journeyOS.base.persistence.FileHelper;
 import com.journeyOS.base.persistence.SpUtils;
 import com.journeyOS.base.utils.BaseUtils;
 import com.journeyOS.base.utils.JsonHelper;
-import com.journeyOS.base.utils.LogUtils;
+import com.journeyOS.base.utils.SmartLog;
 import com.journeyOS.core.CoreManager;
 import com.journeyOS.core.Messages;
 import com.journeyOS.core.api.cityprovider.City;
@@ -59,7 +59,7 @@ public class CityRepositoryImpl implements ICityRepositoryApi {
     @Override
     public void onCreate() {
         mCityDatabase = DBHelper.provider(CityDatabase.class, CITY_DB_NAME);
-        mCityHandler = TaskScheduler.provideHandler(TAG);
+        mCityHandler = TaskScheduler.getInstance().provideHandler(TAG);
         Router.getDefault().register(this);
     }
 
@@ -166,7 +166,7 @@ public class CityRepositoryImpl implements ICityRepositoryApi {
                     SpUtils.getInstant().getBoolean(CITY_INITED, true);
 
                 } catch (Exception e) {
-                    LogUtils.d(TAG, "parse city info fail " + e);
+                    SmartLog.d(TAG, "parse city info fail " + e);
                 }
 
             }

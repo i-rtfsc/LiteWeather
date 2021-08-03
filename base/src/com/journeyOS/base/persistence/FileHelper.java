@@ -12,13 +12,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */package com.journeyOS.base.persistence;
+ */
+package com.journeyOS.base.persistence;
 
 import android.content.Context;
 import android.os.Environment;
 
 import com.journeyOS.base.utils.JsonHelper;
-import com.journeyOS.litetask.TaskScheduler;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
@@ -101,20 +101,15 @@ public class FileHelper {
         }
         final File file = buildFile(fileId);
         if (exists(file)) {
-            TaskScheduler.execute(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        String content = fileObj.getClass().equals(String.class)
-                                ? fileObj.toString() : JsonHelper.toJson(fileObj);
-                        FileWriter writer = new FileWriter(file);
-                        writer.write(content);
-                        writer.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
+            try {
+                String content = fileObj.getClass().equals(String.class)
+                        ? fileObj.toString() : JsonHelper.toJson(fileObj);
+                FileWriter writer = new FileWriter(file);
+                writer.write(content);
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -167,17 +162,12 @@ public class FileHelper {
      * @param directory The directory which its content will be deleted.
      */
     public static void clearDirectory(final File directory) {
-        TaskScheduler.execute(new Runnable() {
-            @Override
-            public void run() {
-                boolean result = false;
-                if (directory.exists()) {
-                    for (File file : directory.listFiles()) {
-                        result = file.delete();
-                    }
-                }
+        boolean result = false;
+        if (directory.exists()) {
+            for (File file : directory.listFiles()) {
+                result = file.delete();
             }
-        });
+        }
     }
 
     public static String assetFile2String(String fileName, Context context) {

@@ -1,14 +1,14 @@
 package com.journeyOS.base.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.journeyOS.base.utils.BaseUtils;
-import com.journeyOS.base.utils.LogUtils;
+import com.journeyOS.base.utils.SmartLog;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -79,9 +79,9 @@ public class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             holderConstructor.setAccessible(true);
             viewHolder = (BaseViewHolder) holderConstructor.newInstance(itemView, this);
         } catch (NoSuchMethodException e) {
-            LogUtils.d(TAG, " create view holder error = " + e);
+            SmartLog.d(TAG, " create view holder error = " + e);
         } catch (Exception e) {
-            LogUtils.d(TAG, " create view holder error = " + e);
+            SmartLog.d(TAG, " create view holder error = " + e);
         }
         return viewHolder;
     }

@@ -19,7 +19,7 @@ package com.journeyOS.plugins.city.ui.adapter;
 
 import com.journeyOS.base.adapter.BaseAdapterData;
 import com.journeyOS.plugins.R;
-import com.journeyOS.core.api.weatherprovider.WeatherData;
+import com.journeyOS.core.bean.weather.WeatherData;
 
 
 public class FollowedCityData implements BaseAdapterData {

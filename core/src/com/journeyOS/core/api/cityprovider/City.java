@@ -16,8 +16,8 @@
 
 package com.journeyOS.core.api.cityprovider;
 
-import android.arch.persistence.room.Entity;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
 
 
 @Entity(tableName = "city", primaryKeys = {"cityId"})

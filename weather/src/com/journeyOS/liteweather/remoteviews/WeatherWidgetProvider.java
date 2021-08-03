@@ -19,7 +19,7 @@ package com.journeyOS.liteweather.remoteviews;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.LiveData;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
@@ -27,7 +27,7 @@ import android.widget.RemoteViews;
 import com.journeyOS.base.utils.TimeUtils;
 import com.journeyOS.core.CoreManager;
 import com.journeyOS.core.api.weatherprovider.IWeatherProvider;
-import com.journeyOS.core.api.weatherprovider.WeatherData;
+import com.journeyOS.core.bean.weather.WeatherData;
 import com.journeyOS.core.base.StatusDataResource;
 import com.journeyOS.liteweather.R;
 

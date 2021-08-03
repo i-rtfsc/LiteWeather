@@ -17,16 +17,16 @@
 package com.journeyOS.liteweather.repository;
 
 
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.MutableLiveData;
 import android.os.Handler;
-import android.support.annotation.MainThread;
-import android.support.annotation.Nullable;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.MainThread;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 
 import com.journeyOS.base.utils.JsonHelper;
-import com.journeyOS.base.utils.LogUtils;
+import com.journeyOS.base.utils.SmartLog;
 import com.journeyOS.core.Messages;
-import com.journeyOS.core.api.weatherprovider.WeatherData;
+import com.journeyOS.core.bean.weather.WeatherData;
 import com.journeyOS.core.base.StatusDataResource;
 import com.journeyOS.core.repository.DBHelper;
 import com.journeyOS.literouter.Router;
@@ -52,7 +52,7 @@ public class WeatherRepository {
 
     private WeatherRepository() {
         mWeatherDatabase = DBHelper.provider(WeatherDatabase.class, WEATHER_DB_NAME);
-        mWeatherWorkHandler = TaskScheduler.provideHandler(TAG);
+        mWeatherWorkHandler = TaskScheduler.getInstance().provideHandler(TAG);
         mWeatherDataLiveData = new MutableLiveData<>();
 
     }
@@ -107,7 +107,7 @@ public class WeatherRepository {
 
                 mWeatherDatabase.weatherDao().saveWeather(weather);
             } catch (Exception e) {
-                LogUtils.e(TAG, "updateWeather error = " + e);
+                SmartLog.e(TAG, "updateWeather error = " + e);
             }
         } else if (StatusDataResource.Status.LOADING.equals(statusDataResource.status)) {
             try {
@@ -116,7 +116,7 @@ public class WeatherRepository {
                     statusDataResource.data = weatherData;
                 }
             } catch (Exception e) {
-                LogUtils.e(TAG, "no cache hit");
+                SmartLog.e(TAG, "no cache hit");
             }
 
         }
@@ -154,7 +154,7 @@ public class WeatherRepository {
             }
 
         } catch (Exception e) {
-            LogUtils.d(TAG, "getFollowedWeather error = " + e);
+            SmartLog.d(TAG, "getFollowedWeather error = " + e);
         }
 
         return followedWeather;
@@ -167,7 +167,7 @@ public class WeatherRepository {
                 return weatherData;
             }
         } catch (Exception e) {
-            LogUtils.e(TAG, "no cache hit");
+            SmartLog.e(TAG, "no cache hit");
         }
         return null;
     }

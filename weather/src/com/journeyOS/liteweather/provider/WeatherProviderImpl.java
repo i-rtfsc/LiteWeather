@@ -16,12 +16,12 @@
 
 package com.journeyOS.liteweather.provider;
 
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.LiveData;
 import android.content.Context;
 
 import com.journeyOS.core.CoreManager;
 import com.journeyOS.core.api.weatherprovider.IWeatherProvider;
-import com.journeyOS.core.api.weatherprovider.WeatherData;
+import com.journeyOS.core.bean.weather.WeatherData;
 import com.journeyOS.core.base.StatusDataResource;
 import com.journeyOS.literouter.annotation.ARouterInject;
 import com.journeyOS.liteweather.api.IFetchWeather;

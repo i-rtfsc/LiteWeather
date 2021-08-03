@@ -18,7 +18,7 @@ package com.journeyOS.core.api.cityprovider;
 
 import android.content.Context;
 import android.os.Handler;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.WorkerThread;
 
 import com.journeyOS.core.api.ICoreApi;
 

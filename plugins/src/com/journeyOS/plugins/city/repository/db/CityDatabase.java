@@ -17,13 +17,13 @@
 package com.journeyOS.plugins.city.repository.db;
 
 
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.RoomDatabase;
+import androidx.room.Database;
+import androidx.room.RoomDatabase;
 
 import com.journeyOS.core.api.cityprovider.City;
 
 
-@Database(entities = {City.class}, version = 1)
+@Database(entities = {City.class}, version = 1, exportSchema = false)
 public abstract class CityDatabase extends RoomDatabase {
     public abstract CityDao cityDao();
 }

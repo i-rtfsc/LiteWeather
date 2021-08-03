@@ -16,8 +16,8 @@
 
 package com.journeyOS.core.base;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 //a generic class that describes a data with a status
 public class StatusDataResource<T> {

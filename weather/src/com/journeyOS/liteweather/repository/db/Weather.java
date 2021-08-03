@@ -16,8 +16,8 @@
 
 package com.journeyOS.liteweather.repository.db;
 
-import android.arch.persistence.room.Entity;
-import android.support.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.annotation.NonNull;
 
 import static com.journeyOS.liteweather.repository.db.Configs.WEATHER_CITY_ID;
 import static com.journeyOS.liteweather.repository.db.Configs.WEATHER_DB_NAME;

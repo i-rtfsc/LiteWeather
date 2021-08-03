@@ -19,10 +19,10 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.journeyOS.base.utils.BaseUtils;
-import com.journeyOS.base.utils.LogUtils;
+import com.journeyOS.base.utils.SmartLog;
 
 import java.util.Set;
 
@@ -47,7 +47,7 @@ public class SpUtils {
 
     public static SpUtils getInstant() {
         if (instant == null) {
-            LogUtils.d(TAG, "please init first...");
+            SmartLog.d(TAG, "please init first...");
             //instant = new SpUtils(mContext);
         }
         sp = mContext.getSharedPreferences(PRE_NAME, Context.MODE_PRIVATE);
@@ -56,7 +56,7 @@ public class SpUtils {
 
     public static SpUtils getInstant(String prefName) {
         if (instant == null) {
-            LogUtils.d(TAG, "please init first...");
+            SmartLog.d(TAG, "please init first...");
             //instant = new SpUtils(mContext);
         }
         if (BaseUtils.isNull(prefName)) {

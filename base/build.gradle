@@ -1,16 +1,18 @@
 apply plugin: 'com.android.library'
 
+def thirdParty = rootProject.ext.thirdParty
 
 android {
-    compileSdkVersion gradle.compileSdkVersion
+    def androidSdk = rootProject.ext.androidSdk
+    compileSdkVersion androidSdk.compileVersion
 
     defaultConfig {
-        minSdkVersion gradle.minSdkVersion
-        targetSdkVersion gradle.targetVersion
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion androidSdk.minVersion
+        targetSdkVersion androidSdk.targetVersion
+        versionCode rootProject.ext.verCode
+        versionName rootProject.ext.verName
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
 
     }
 
@@ -36,30 +38,30 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api "com.journeyOS:litetask:$gradle.litetask"
-    api "com.journeyOS:literouter:$gradle.literouter_core"
+    api "com.journeyOS:litetask:$thirdParty.litetask"
+    api "com.github.journeyOS:LiteRouter:$thirdParty.literouter_core"
 
     // api library , can be used in import module
-    api "com.android.support:appcompat-v7:$gradle.supportVersion"
-    api "com.android.support:design:$gradle.supportVersion"
-    api("com.jakewharton:butterknife:$gradle.butterknife")
-    api "com.github.promeg:tinypinyin:$gradle.tinypinyin"
-    api "com.facebook.stetho:stetho:$gradle.stetho"
-    api "uk.co.chrisjenx:calligraphy:$gradle.calligraphy"
-    api "com.squareup.retrofit2:retrofit:$gradle.retrofit2"
-    api "com.squareup.retrofit2:converter-gson:$gradle.retrofit2"
-    api "com.tencent.bugly:crashreport_upgrade:$gradle.bugly_crashreport_upgrade"
+    api "androidx.appcompat:appcompat:$thirdParty.appcompat"
+    api "com.google.android.material:material:$thirdParty.material"
+    api "com.jakewharton:butterknife:$thirdParty.butterknife"
+    api "com.github.promeg:tinypinyin:$thirdParty.tinypinyin"
+    api "com.facebook.stetho:stetho:$thirdParty.stetho"
+    api "uk.co.chrisjenx:calligraphy:$thirdParty.calligraphy"
+    api "com.squareup.retrofit2:retrofit:$thirdParty.retrofit2"
+    api "com.squareup.retrofit2:converter-gson:$thirdParty.retrofit2"
+    api "com.tencent.bugly:crashreport_upgrade:$thirdParty.bugly_crashreport_upgrade"
     // ViewModel and LiveData
-    api "android.arch.lifecycle:extensions:$gradle.lifecycle_extensions"
+    api "androidx.lifecycle:lifecycle-extensions:$thirdParty.lifecycle_extensions"
     // Room
-    api "android.arch.persistence.room:runtime:$gradle.room_runtime"
+    api "androidx.room:room-runtime:$thirdParty.room_runtime"
 
-    debugApi "com.squareup.leakcanary:leakcanary-android:$gradle.leakcanary"
-    releaseApi "com.squareup.leakcanary:leakcanary-android-no-op:$gradle.leakcanary"
+    debugApi "com.squareup.leakcanary:leakcanary-android:$thirdParty.leakcanary"
+    releaseApi "com.squareup.leakcanary:leakcanary-android-no-op:$thirdParty.leakcanary"
 
     // implementation library , can only be used in current module ,using JsonHelper
-    implementation "com.google.code.gson:gson:$gradle.gson"
+    implementation "com.google.code.gson:gson:$thirdParty.gson"
 
     testApi 'junit:junit:4.12'
-    androidTestApi 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestApi 'androidx.test.espresso:espresso-core:3.1.0'
 }

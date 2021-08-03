@@ -18,12 +18,12 @@ package com.journeyOS.liteweather.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.arch.lifecycle.Observer;
+import androidx.lifecycle.Observer;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -31,11 +31,11 @@ import android.widget.TextView;
 import com.journeyOS.base.network.NetWork;
 import com.journeyOS.base.persistence.SpUtils;
 import com.journeyOS.base.utils.BaseUtils;
-import com.journeyOS.base.utils.LogUtils;
+import com.journeyOS.base.utils.SmartLog;
 import com.journeyOS.core.CoreManager;
 import com.journeyOS.core.Messages;
 import com.journeyOS.core.api.weatherprovider.IWeatherProvider;
-import com.journeyOS.core.api.weatherprovider.WeatherData;
+import com.journeyOS.core.bean.weather.WeatherData;
 import com.journeyOS.core.base.BaseFragment;
 import com.journeyOS.core.base.StatusDataResource;
 import com.journeyOS.core.viewmodel.ModelProvider;
@@ -60,8 +60,8 @@ import butterknife.BindView;
 import butterknife.OnLongClick;
 
 import static com.journeyOS.base.Constant.ENABLE_LONGE_CLICK;
-import static com.journeyOS.core.api.weatherprovider.WeatherData.AqiEntity;
-import static com.journeyOS.core.api.weatherprovider.WeatherData.LifeIndexEntity;
+import static com.journeyOS.core.bean.weather.WeatherData.AqiEntity;
+import static com.journeyOS.core.bean.weather.WeatherData.LifeIndexEntity;
 
 
 public class WeatherFragment extends BaseFragment implements RouterListener {
@@ -194,7 +194,7 @@ public class WeatherFragment extends BaseFragment implements RouterListener {
                             updateWeatherUI(weatherData);
                         }
                     } else {
-                        TaskScheduler.runOnUIThread(new Runnable() {
+                        TaskScheduler.getInstance().getMainHandler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 WeatherData weatherData = mWeatherModel.getWeatherData();
@@ -220,7 +220,7 @@ public class WeatherFragment extends BaseFragment implements RouterListener {
     public void onResume() {
         super.onResume();
         fetchArguments();
-        LogUtils.d(TAG, "weather fragment resume, current city = [" + (BaseUtils.isNull(mWeatherData) ? null : mWeatherData.basic.city + "]" + ", current city id = " + mCityId));
+        SmartLog.d(TAG, "weather fragment resume, current city = [" + (BaseUtils.isNull(mWeatherData) ? null : mWeatherData.basic.city + "]" + ", current city id = " + mCityId));
     }
 
     private void startRefresh() {
@@ -244,7 +244,7 @@ public class WeatherFragment extends BaseFragment implements RouterListener {
 
     private void updateWeatherUI(WeatherData weatherData) {
         if (BaseUtils.isNull(weatherData)) {
-            LogUtils.w(TAG, "can be update ui while weather data was NULL");
+            SmartLog.w(TAG, "can be update ui while weather data was NULL");
             return;
         }
         onAnimation(false);
@@ -335,7 +335,7 @@ public class WeatherFragment extends BaseFragment implements RouterListener {
     public boolean showDebug() {
         boolean enableLongClick = SpUtils.getInstant().getBoolean(ENABLE_LONGE_CLICK, false);
         if (!enableLongClick) {
-            LogUtils.d(TAG, "you has been " + enableLongClick + " long click!");
+            SmartLog.d(TAG, "you has been " + enableLongClick + " long click!");
             return true;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -392,7 +392,7 @@ public class WeatherFragment extends BaseFragment implements RouterListener {
     }
 
     private void fetchWeather(boolean forceRefresh) {
-        LogUtils.d(TAG, "fetch weather by city id = " + this.mCityId + " current city = [" + (BaseUtils.isNull(mWeatherData) ? null : mWeatherData.basic.city) + "]");
+        SmartLog.d(TAG, "fetch weather by city id = " + this.mCityId + " current city = [" + (BaseUtils.isNull(mWeatherData) ? null : mWeatherData.basic.city) + "]");
         if (!BaseUtils.isNull(mCityId)) {
 
             if (BaseUtils.isNull(mWeatherData)) {

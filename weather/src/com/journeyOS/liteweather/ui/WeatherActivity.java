@@ -20,8 +20,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
@@ -30,7 +30,7 @@ import android.widget.RelativeLayout;
 
 import com.journeyOS.base.persistence.SpUtils;
 import com.journeyOS.base.utils.BaseUtils;
-import com.journeyOS.base.utils.LogUtils;
+import com.journeyOS.base.utils.SmartLog;
 import com.journeyOS.base.utils.UIUtils;
 import com.journeyOS.core.CoreManager;
 import com.journeyOS.core.Messages;
@@ -126,7 +126,7 @@ public class WeatherActivity extends BaseActivity implements RouterListener {
     private void fetchCity() {
         String currentCityId = CoreManager.getImpl(ICityProvider.class).getCurrentCityId();
         final Set<String> cities = CoreManager.getImpl(ICityProvider.class).getCitiesId();
-        LogUtils.d(TAG, "  fetchCity  city id list = " + cities);
+        SmartLog.d(TAG, "  fetchCity  city id list = " + cities);
         if (!BaseUtils.isNull(cities)) {
             mCityId.clear();
             mCityName.clear();

@@ -24,7 +24,10 @@ import com.facebook.stetho.Stetho;
 import com.journeyOS.base.persistence.FileHelper;
 import com.journeyOS.base.persistence.SpUtils;
 import com.journeyOS.core.BuildConfig;
+import com.journeyOS.core.CoreManager;
 import com.journeyOS.core.R;
+import com.journeyOS.core.api.db.ICityProvider;
+import com.journeyOS.core.net.Demo;
 import com.journeyOS.litetask.TaskScheduler;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
@@ -42,6 +45,10 @@ public class AppConfig {
         initFile();
         initSharedPreference(context);
 //        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/weather_font.ttf").setFontAttrId(R.attr.fontPath).build());
+
+//        CoreManager.getImpl(ICityProvider.class).loadCities();
+        Demo.test();
+
     }
 
     private static void initCrashReport(Context context) {

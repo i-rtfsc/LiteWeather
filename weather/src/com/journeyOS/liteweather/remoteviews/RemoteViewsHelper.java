@@ -27,13 +27,13 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Build;
 import android.os.SystemClock;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 import android.widget.RemoteViews;
 
 import com.journeyOS.base.persistence.SpUtils;
 import com.journeyOS.base.utils.TimeUtils;
 import com.journeyOS.core.Version;
-import com.journeyOS.core.api.weatherprovider.WeatherData;
+import com.journeyOS.core.bean.weather.WeatherData;
 import com.journeyOS.core.base.ResourceProvider;
 import com.journeyOS.liteweather.R;
 import com.journeyOS.liteweather.repository.WeatherRepository;

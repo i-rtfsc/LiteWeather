@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.journeyOS.core.api.weatherprovider;
+package com.journeyOS.core.bean.weather;
 
 import java.util.List;
 
@@ -81,6 +81,20 @@ public class WeatherData {
         public String weatherNight;
         //probability of precipitation
         public String pop;
+
+        @Override
+        public String toString() {
+            return "DailyEntity{" +
+                    "date='" + date + '\'' +
+                    ", sunRise='" + sunRise + '\'' +
+                    ", sunSet='" + sunSet + '\'' +
+                    ", TMax='" + TMax + '\'' +
+                    ", TMin='" + TMin + '\'' +
+                    ", weatherDay='" + weatherDay + '\'' +
+                    ", weatherNight='" + weatherNight + '\'' +
+                    ", pop='" + pop + '\'' +
+                    '}';
+        }
     }
 
     public static class NowEntity {

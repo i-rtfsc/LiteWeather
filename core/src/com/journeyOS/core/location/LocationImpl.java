@@ -22,7 +22,7 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.journeyOS.base.utils.BaseUtils;
-import com.journeyOS.base.utils.LogUtils;
+import com.journeyOS.base.utils.SmartLog;
 import com.journeyOS.core.CoreManager;
 import com.journeyOS.core.Messages;
 import com.journeyOS.core.api.cityprovider.City;
@@ -65,7 +65,7 @@ public class LocationImpl implements ILocationApi {
         mLocationClient.setLocationListener(new AMapLocationListener() {
             @Override
             public void onLocationChanged(final AMapLocation aMapLocation) {
-                LogUtils.i(TAG, "onLocationChanged = " + aMapLocation);
+                SmartLog.i(TAG, "onLocationChanged = " + aMapLocation);
                 if (aMapLocation != null) {
 
                     CoreManager.getImpl(ICityProvider.class).getCityWorkHandler().post(new Runnable() {
@@ -93,7 +93,7 @@ public class LocationImpl implements ILocationApi {
                                     mLocatedCity.longitude = String.valueOf(aMapLocation.getLongitude());
                                 }
                             } catch (Exception e) {
-                                LogUtils.e(TAG, "location error = " + e);
+                                SmartLog.e(TAG, "location error = " + e);
                             }
 
                             Messages msg = new Messages();
@@ -101,7 +101,7 @@ public class LocationImpl implements ILocationApi {
                             msg.arg1 = locationSucceed ? 1 : 0;
                             msg.obj = locationSucceed ? mLocatedCity.cityId : null;
                             Router.getDefault().post(msg);
-                            LogUtils.i(TAG, "located city = " + mLocatedCity);
+                            SmartLog.i(TAG, "located city = " + mLocatedCity);
                         }
                     });
 

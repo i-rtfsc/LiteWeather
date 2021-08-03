@@ -16,23 +16,22 @@
 
 package com.journeyOS.plugins.city.ui;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Observer;
-import android.support.annotation.MainThread;
-import android.support.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.annotation.MainThread;
+import androidx.annotation.Nullable;
 
 import com.journeyOS.core.CoreManager;
 import com.journeyOS.core.Messages;
 import com.journeyOS.core.api.cityprovider.ICityProvider;
 import com.journeyOS.core.api.weatherprovider.IWeatherProvider;
-import com.journeyOS.core.api.weatherprovider.WeatherData;
+import com.journeyOS.core.bean.weather.WeatherData;
 import com.journeyOS.core.base.StatusDataResource;
 import com.journeyOS.core.location.ILocationApi;
 import com.journeyOS.core.viewmodel.BaseViewModel;
 import com.journeyOS.literouter.RouterListener;
 import com.journeyOS.literouter.RouterMsssage;
-import com.journeyOS.litetask.Task;
 import com.journeyOS.litetask.TaskScheduler;
 import com.journeyOS.plugins.city.ui.adapter.FollowedCityData;
 import com.journeyOS.plugins.city.ui.adapter.FollowedCityHolder;
@@ -64,18 +63,14 @@ public class CityModel extends BaseViewModel implements RouterListener {
 
 
     private void fetchFollowedWeather() {
-        TaskScheduler.execute(new Task<List<WeatherData>>() {
-            @Override
-            public List<WeatherData> doInBackground() throws InterruptedException {
-                return CoreManager.getImpl(IWeatherProvider.class).fetchFollowedWeather();
-            }
 
+        TaskScheduler.getInstance().getExecutor("TODO").execute(new Runnable() {
             @Override
-            public void onSuccess(List<WeatherData> weatherData) {
+            public void run() {
+                List<WeatherData> weatherData = CoreManager.getImpl(IWeatherProvider.class).fetchFollowedWeather();
                 parseFollowedWeathers(weatherData);
             }
         });
-
     }
 
     public void deleteFollowedWeather(String cityId) {

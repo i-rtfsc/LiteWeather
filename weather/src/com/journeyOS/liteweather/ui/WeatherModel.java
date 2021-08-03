@@ -16,18 +16,18 @@
 
 package com.journeyOS.liteweather.ui;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.Observer;
-import android.support.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.annotation.Nullable;
 import android.widget.Toast;
 
 import com.journeyOS.base.utils.BaseUtils;
-import com.journeyOS.base.utils.LogUtils;
+import com.journeyOS.base.utils.SmartLog;
 import com.journeyOS.core.CoreManager;
 import com.journeyOS.core.Messages;
 import com.journeyOS.core.api.cityprovider.ICityProvider;
-import com.journeyOS.core.api.weatherprovider.WeatherData;
+import com.journeyOS.core.bean.weather.WeatherData;
 import com.journeyOS.core.base.StatusDataResource;
 import com.journeyOS.core.viewmodel.BaseViewModel;
 import com.journeyOS.literouter.RouterListener;
@@ -65,7 +65,7 @@ public class WeatherModel extends BaseViewModel implements RouterListener {
                 try {
                     parseWeather(statusDataResource.data);
                 } catch (Exception e) {
-                    LogUtils.e(TAG, "parse weather date error = " + e);
+                    SmartLog.e(TAG, "parse weather date error = " + e);
                 }
 
                 mGetWeatherStatus.setValue(statusDataResource.status);
