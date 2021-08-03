@@ -1,0 +1,105 @@
+apply plugin: 'com.android.application'
+
+android {
+    def androidSdk = rootProject.ext.androidSdk
+    compileSdkVersion androidSdk.compileSdkVersion
+    defaultConfig {
+        applicationId androidSdk.applicationId
+        minSdkVersion androidSdk.minSdkVersion
+        targetSdkVersion androidSdk.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+            main.java.srcDirs = ['src']
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    signingConfigs {
+        release {
+            File strFile = new File("../keystore/liteweather.keystore")
+            storeFile file(strFile)
+            keyAlias 'journeyOS'
+            keyPassword 'liteweather'
+            storePassword 'qazwsxedc'
+        }
+        debug {
+            File strFile = new File("../keystore/liteweather.keystore")
+            storeFile file(strFile)
+            keyAlias 'journeyOS'
+            keyPassword 'liteweather'
+            storePassword 'qazwsxedc'
+        }
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("boolean", "BUILD_DEBUG", "false")
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("boolean", "BUILD_DEBUG", "true")
+            signingConfig signingConfigs.debug
+        }
+    }
+
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
+
+    applicationVariants.all { variant ->
+        if (variant.buildType.name == 'release') {
+            variant.outputs.all {
+                outputFileName = new File("./../../../../../build/app_release/", "LiteWeather.apk")
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    def support = rootProject.ext.support
+    def dependencies = rootProject.ext.dependencies
+
+    //support
+    implementation support["design"]
+
+    implementation project(':library-base')
+    implementation project(':library-widget')
+
+    annotationProcessor dependencies["room-compiler"]
+
+    //下拉刷新
+    implementation 'com.github.recruit-lifestyle:WaveSwipeRefreshLayout:1.6'
+
+    //底部tabBar
+    implementation('me.majiajie:pager-bottom-tab-strip:2.2.5') {
+        exclude group: 'com.android.support'
+    }
+
+    //内存泄漏测试
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.3'
+}
+
+
+defaultTasks 'clean', 'assembleRelease'
