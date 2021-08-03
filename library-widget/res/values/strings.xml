@@ -1,0 +1,11 @@
+<resources>
+    <string name="unit_t">°</string>
+    <string name="unit_percent">%</string>
+    <string name="unit_hpa">hpa</string>
+    <string name="weather_time">时间</string>
+    <string name="weather_humidity">湿度(%)</string>
+    <string name="weather_wind_level">风力</string>
+    <string name="weather_wind_speed">风速</string>
+    <string name="weather_wind_direction">风向</string>
+    <string name="weather_atm">气压</string>
+</resources>

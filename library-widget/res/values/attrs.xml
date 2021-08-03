@@ -1,0 +1,37 @@
+<resources>
+<!--    <declare-styleable name="SettingView">-->
+<!--        <attr name="iOSStyle" format="boolean" />-->
+<!--        <attr name="settingIcon" format="reference" />-->
+<!--        <attr name="iconWidth" format="dimension" />-->
+<!--        <attr name="iconHeight" format="dimension" />-->
+<!--        <attr name="settingTitle" format="string" />-->
+<!--        <attr name="settingTitleTextSize" format="dimension" />-->
+<!--        <attr name="settingTitleTextColor" format="color" />-->
+<!--        <attr name="settingSummary" format="string" />-->
+<!--        <attr name="settingSummaryTextSize" format="dimension" />-->
+<!--        <attr name="settingSummaryTextColor" format="color" />-->
+<!--        <attr name="showSummary" format="boolean" />-->
+<!--        <attr name="arrow" format="reference" />-->
+<!--        <attr name="arrowWidth" format="dimension" />-->
+<!--        <attr name="arrowHeight" format="dimension" />-->
+<!--        <attr name="settingError" format="reference" />-->
+<!--        <attr name="showRight" format="boolean" />-->
+<!--        <attr name="settingRightSummary" format="string" />-->
+<!--        <attr name="settingRightSummaryTextSize" format="dimension" />-->
+<!--        <attr name="settingRightSummaryTextColor" format="color" />-->
+<!--        <attr name="showRightSummary" format="boolean" />-->
+<!--    </declare-styleable>-->
+
+<!--    <declare-styleable name="SettingText">-->
+<!--        <attr name="settingText" format="string" />-->
+<!--        <attr name="settingTextSize" format="dimension" />-->
+<!--        <attr name="settingTextColor" format="color" />-->
+<!--    </declare-styleable>-->
+
+<!--    <declare-styleable name="SettingSwitch">-->
+<!--        <attr name="toggle_check" format="boolean" />-->
+<!--    </declare-styleable>-->
+<!--    <declare-styleable name="SettingRadio">-->
+<!--        <attr name="radio_check" format="boolean" />-->
+<!--    </declare-styleable>-->
+</resources>

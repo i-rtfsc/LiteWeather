@@ -1,97 +1,90 @@
 ext {
-
-    /*android版本配置相关*/
-    androidSdk = [
-            toolVersion   : "27.1.0",
-            compileVersion: 29,
-            minVersion    : 28,
-            targetVersion : 29,
-    ]
-
-
-    /*app版本控制相关*/
     timeList = buildTime()
-
+//    year = timeList[0] - getFirstYear()
     year = timeList[0] - 2018
     month = timeList[1]
     birthday = timeList[0] + "/" + timeList[1] + "/1"
     commitCount = getCommitCount(birthday)
+    //app版本
+    versionCode = genVerCode(timeList[0], month, commitCount)
+    versionName = genVerName(year, month, commitCount)
+    versionBranch = getLocalBranchName()
 
-    verCode = genVerCode(timeList[0], month, commitCount)
-    verName = genVerName(year, month, commitCount)
-    verbranch = getLocalBranchName()
-    /*app版本控制相关*/
+    //android开发版本配置
+    androidSdk = [
+            compileSdkVersion: 29,
+            buildToolsVersion: "28.0.3",
+            applicationId    : "com.journeyOS.liteweather",
+            minSdkVersion    : 15,
+            targetSdkVersion : 29,
+    ]
 
-    /*sdk version*/
-    axes = ['': '']
-    for (Project subPorject : project.subprojects) {
-        def key = subPorject.getName().toString()
-        def subPath = getRootDir().path + File.separator + subPorject.getName()
-        def value = getCommitCount(birthday, subPath).toString()
-        axes.put(key, value)
-    }
+    //version配置
+    versions = [
+            "support-version": "1.0.0",
+    ]
 
-
-    //core dependencies
-    gradle.ext.room_compiler = '1.0.0'
+    //support配置
+    support = [
+            'support-v4'              : "androidx.legacy:legacy-support-v4:${versions["support-version"]}",
+            'appcompat-v7'            : "androidx.appcompat:appcompat:${versions["support-version"]}",
+            'recyclerview-v7'         : "androidx.recyclerview:recyclerview:${versions["support-version"]}",
+            'support-v13'             : "androidx.legacy:legacy-support-v13:${versions["support-version"]}",
+            'support-fragment'        : "androidx.fragment:fragment:${versions["support-version"]}",
+            'design'                  : "com.google.android.material:material:${versions["support-version"]}",
+            'animated-vector-drawable': "androidx.vectordrawable:vectordrawable-animated:${versions["support-version"]}",
+    ]
 
     /*3方库版本*/
-    thirdParty = [
-            kotlin_version               : "1.4.10",
-            appcompat                    : "1.2.0",
-            material                     : "1.1.0",
-            constraintlayout             : "2.0.4",
-            lifecycle                    : "2.2.0",
-            lifecycle_extensions         : "2.2.0",
-            lifecycle_compiler           : "2.2.0",
-            swiperefreshlayout           : "1.0.0",
-            legacy                       : "1.0.0",
-            cardview                     : "1.0.0",
-            recyclerview                 : "1.0.0",
-            annotation                   : "1.0.0",
-
-            room                         : "2.2.5",
-            room_runtime                 : "2.0.0",
-            room_compiler                : "2.0.0",
-
-            calligraphy                  : "2.2.0",
-            butterknife                  : "10.2.3",
-            gson                         : "2.8.5",
-            retrofit2                    : "2.9.0",
-            retrofit2_converter_scalars  : "2.9.0",
-            retrofit2_converter_moshi    : "2.9.0",
-            retrofit2_logging_interceptor: "3.12.0",
-            tinypinyin                   : "1.0.0",
-            stetho                       : "1.5.0",
-            leakcanary                   : "1.5.4",
-            bugly_crashreport_upgrade    : "1.3.4",
-            rxjava                       : "3.0.0",
-            rxandroid                    : "3.0.0",
-            toasty                       : "1.3.0",
-            codeview                     : "1.3.1",
-            materialprogressbar          : "1.4.2",
-            slidingrootnav               : "1.1.0",
-            constraint_layout            : "1.0.2",
-            submitbutton                 : "1.1.2",
-            constraint                   : "1.0.2",
-            design                       : "25.1.1",
-            circleimageview              : "2.2.0",
-            picasso                      : "2.5.2",
-            glide                        : "4.9.0",
-            gradient                     : "1.0.1",
-
-
-            literouter_core              : "2.1.0",
-            literouter_compiler          : "2.1.0",
-            litetask                     : "1.0.5",
-
-            expandablelayout             : "2.9.2",
-            mkloader                     : "1.4.0",
-
-            supportVersion               : "27.0.2",
+    dependencies = [
+            "lite-framework"                       : "com.github.journeyOS:LiteFramework:2.2.0",
+            //Google AAC
+            "lifecycle-extensions"                 : "androidx.lifecycle:lifecycle-extensions:2.0.0",
+            "lifecycle-compiler"                   : "androidx.lifecycle:lifecycle-compiler:2.0.0",
+            //room数据库
+            "room"                                 : "androidx.room:room:2.2.5",
+            "room-runtime"                         : "androidx.room:room-runtime:2.2.5",
+            "room-compiler"                        : "androidx.room:room-compiler:2.2.5",
+            //rxjava
+            "rxjava"                               : "io.reactivex.rxjava2:rxjava:2.2.3",
+            "rxandroid"                            : "io.reactivex.rxjava2:rxandroid:2.1.0",
+            //rx系列与View生命周期同步
+            "rxlifecycle"                          : "com.trello.rxlifecycle2:rxlifecycle:2.2.2",
+            "rxlifecycle-components"               : "com.trello.rxlifecycle2:rxlifecycle-components:2.2.2",
+            //rxbinding
+            "rxbinding"                            : "com.jakewharton.rxbinding2:rxbinding:2.1.1",
+            //rx 6.0权限请求
+            "rxpermissions"                        : "com.github.tbruyelle:rxpermissions:0.10.2",
+            //network
+            "okhttp"                               : "com.squareup.okhttp3:okhttp:3.10.0",
+            "retrofit"                             : "com.squareup.retrofit2:retrofit:2.4.0",
+            "converter-gson"                       : "com.squareup.retrofit2:converter-gson:2.4.0",
+            "adapter-rxjava"                       : "com.squareup.retrofit2:adapter-rxjava2:2.4.0",
+            //glide图片加载
+            "glide"                                : "com.github.bumptech.glide:glide:4.11.0",
+            "glide-compiler"                       : "com.github.bumptech.glide:compiler:4.11.0",
+            //json解析
+            "gson"                                 : "com.google.code.gson:gson:2.8.6",
+            //material-dialogs
+            "material-dialogs-core"                : "com.afollestad.material-dialogs:core:0.9.6.0",
+            "material-dialogs-commons"             : "com.afollestad.material-dialogs:commons:0.9.6.0",
+            //recyclerview的databinding套装
+            "bindingcollectionadapter"             : "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:4.0.0",
+            "bindingcollectionadapter-recyclerview": "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:4.0.0",
+            "bindingcollectionadapter-viewpager2"  : "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-viewpager2:4.0.0",
+            //阿里路由框架
+            "arouter-api"                          : "com.alibaba:arouter-api:1.5.2",
+            "arouter-compiler"                     : "com.alibaba:arouter-compiler:1.5.2",
+            //SwitchButton
+            "switchbutton"                         : "com.kyleduo.switchbutton:library:2.1.0",
     ]
 }
 
+//https://stackoverflow.com/questions/17097263/automatic-versioning-of-android-build-using-git-describe-with-gradle
+def static getFirstYear() {
+    def year = "git log --reverse --format=\"format:%ci\" | sed -n 1p | awk '{print \$1}'".execute().toInteger()
+    return year
+}
 /**
  * 组织版本号（VersionCode）
  * @param year 大版本
