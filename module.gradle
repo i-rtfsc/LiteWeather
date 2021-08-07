@@ -19,6 +19,10 @@ android {
         //支持svg图片
         vectorDrawables.useSupportLibrary = true
 
+        //使用buildConfigField向BuildConfig类中写入常量
+        buildConfigField("int", "BUILD_VERSION_CODE", rootProject.ext.versionCode + "")
+        buildConfigField("String", "BUILD_VERSION_NAME", "\"" + rootProject.ext.versionName + "\"")
+
         //阿里路由框架配置
         javaCompileOptions {
             annotationProcessorOptions {
@@ -57,6 +61,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     dataBinding {
         enabled true
     }

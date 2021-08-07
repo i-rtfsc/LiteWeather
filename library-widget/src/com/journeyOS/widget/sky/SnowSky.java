@@ -33,13 +33,13 @@ public class SnowSky extends BaseSky {
     private ArrayList<SnowHolder> holders = new ArrayList<SnowHolder>();
 
     private static final int COUNT = 30;
-    private static final float MIN_SIZE = 12f;// dp
-    private static final float MAX_SIZE = 30f;// dp
+    private static final float MIN_SIZE = 12 / 2f;//dp
+    private static final float MAX_SIZE = 30 / 2f;//dp
 
     public SnowSky(Context context, boolean isNight) {
         super(context, isNight);
         mContext = context;
-        drawable = new GradientDrawable(GradientDrawable.Orientation.BL_TR, new int[]{0x99ffffff, 0x00ffffff});
+        drawable = new GradientDrawable(GradientDrawable.Orientation.BL_TR, new int[]{0x88ffffff, 0x33ffffff});
         drawable.setShape(GradientDrawable.OVAL);
         drawable.setGradientType(GradientDrawable.RADIAL_GRADIENT);
     }

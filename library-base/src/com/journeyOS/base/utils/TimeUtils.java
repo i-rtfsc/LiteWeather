@@ -17,7 +17,7 @@ public class TimeUtils {
     public static final long MIN_OF_HOUR = 60;
     public static final long SEC_OF_MIN = 60;
     public static final long MILLIS_OF_SEC = 1000;
-    private static SimpleDateFormat MONTH_DAY_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    private static SimpleDateFormat MONTH_DAY_FORMAT = new SimpleDateFormat("yyyyMMdd");
     private static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private static SimpleDateFormat HOUR_MINUTE = new SimpleDateFormat("HH:mm");
     private static SimpleDateFormat HOUR = new SimpleDateFormat("HH");
@@ -59,7 +59,7 @@ public class TimeUtils {
         return timeTips;
     }
 
-    public static String getMopnthDay() {
+    public static String getMonthDay() {
         return MONTH_DAY_FORMAT.format(new Date());
     }
 
@@ -234,6 +234,10 @@ public class TimeUtils {
             String time = date.substring(11, 16);
             return time;
         }
+        //
+        if (date.length() == 5) {
+            return date;
+        }
         return "";
     }
 
@@ -248,6 +252,14 @@ public class TimeUtils {
         return diffHours;
     }
 
-
+    public static String parseMonthDay(String date) {
+        try {
+            final String[] strs = date.split("-");
+            return strs[0] + strs[1] + strs[2];
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
 }
 

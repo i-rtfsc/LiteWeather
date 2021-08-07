@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.journeyOS.setting.ui.viewmodel.SettingsViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.journeyOS.setting.ui.viewmodel.SettingsViewModel" />
+
+
+        <import type="com.journeyOS.liteframework.binding.viewadapter.recyclerview.LayoutManagers" />
+
+    </data>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:binding="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/theme_wrap_layout">
+
+            <com.journeyOS.widget.setting.SettingView
+                style="@style/theme_top_layout"
+                app:settingIcon="@drawable/svg_city"
+                app:settingRightSummary="@string/city_select"
+                app:settingRightSummaryTextColor="@color/text_primary_dark"
+                app:settingSummaryTextColor="@color/text_secondary"
+                app:settingTitleTextColor="@color/text_primary"
+                app:showRightSummary="true"
+                app:showSummary="true"
+                binding:onClickCommand="@{viewModel.cityOnClickCommand}"
+                binding:summary="@{viewModel.cityNameEvent}"
+                binding:title="@{viewModel.adm1Event}" />
+
+            <com.journeyOS.widget.setting.SettingView
+                style="@style/theme_bottom_layout"
+                app:settingIcon="@drawable/svg_account"
+                app:settingRightSummary="@string/weather_key_select"
+                app:settingRightSummaryTextColor="@color/text_primary_dark"
+                app:settingSummaryTextColor="@color/text_secondary"
+                app:settingTitle="@string/weather_key"
+                app:settingTitleTextColor="@color/text_primary"
+                app:showSummary="true"
+                binding:onClickCommand="@{viewModel.keyOnClickCommand}"
+                binding:summary="@{viewModel.weatherKey}" />
+
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable_weather_port"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:el_duration="360"
+                app:el_expanded="true">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="246dp"
+                    binding:itemBinding="@{viewModel.itemBinding}"
+                    binding:items="@{viewModel.observableList}"
+                    binding:layoutManager="@{LayoutManagers.linear()}" />
+
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/theme_wrap_layout">
+
+            <com.journeyOS.widget.setting.SettingView
+                style="@style/theme_top_layout"
+                app:settingIcon="@drawable/svg_version"
+                app:settingRightSummaryTextColor="@color/text_primary_dark"
+                app:settingSummaryTextColor="@color/text_secondary"
+                app:settingTitle="@string/version"
+                app:settingTitleTextColor="@color/text_primary"
+                app:showSummary="true"
+                binding:onClickCommand="@{viewModel.versionOnClickCommand}"
+                binding:summary="@{viewModel.version}" />
+
+            <com.journeyOS.widget.setting.SettingView
+                style="@style/theme_mid_layout"
+                app:settingIcon="@drawable/svg_email"
+                app:settingRightSummaryTextColor="@color/text_primary_dark"
+                app:settingSummary="@string/email_account"
+                app:settingSummaryTextColor="@color/text_secondary"
+                app:settingTitle="@string/email"
+                app:settingTitleTextColor="@color/text_primary"
+                binding:onClickCommand="@{viewModel.emailOnClickCommand}" />
+
+            <com.journeyOS.widget.setting.SettingView
+                style="@style/theme_bottom_layout"
+                app:settingIcon="@drawable/svg_github"
+                app:settingRightSummaryTextColor="@color/text_primary_dark"
+                app:settingSummary="@string/github_account"
+                app:settingSummaryTextColor="@color/text_secondary"
+                app:settingTitle="@string/github"
+                app:settingTitleTextColor="@color/text_primary"
+                binding:onClickCommand="@{viewModel.emailOnClickCommand}" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/theme_wrap_layout">
+
+            <com.journeyOS.widget.setting.SettingSwitch
+                style="@style/theme_single_layout"
+                app:settingIcon="@drawable/svg_night"
+                app:settingRightSummaryTextColor="@color/text_primary_dark"
+                app:settingSummary="@string/night_sky_summary"
+                app:settingSummaryTextColor="@color/text_secondary"
+                app:settingTitle="@string/night_sky"
+                app:settingTitleTextColor="@color/text_primary"
+                app:theme="@style/theme_check_box"
+                binding:check="@{viewModel.nightSky}"
+                binding:onClickCommand="@{viewModel.onNightSkyCheckedChangeCommand}" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</layout>

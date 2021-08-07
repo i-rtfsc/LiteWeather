@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="background_corners">10dp</dimen>
+
+
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="divider_size">0.5dp</dimen>
+    <dimen name="divider_size_secondary">0.5dp</dimen>
+    <dimen name="toolbar_height">48dp</dimen>
+
+    <dimen name="common_dimen_tiny">4dp</dimen>
+    <dimen name="common_dimen_small">6dp</dimen>
+    <dimen name="common_dimen">10dp</dimen>
+    <dimen name="common_dimen_mid">12dp</dimen>
+    <dimen name="common_dimen_big">16dp</dimen>
+
+    <dimen name="side_letter_bar_width">36dp</dimen>
+    <dimen name="search_icon_padding">12dp</dimen>
+    <dimen name="search_view_text_padding">65dp</dimen>
+
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_big">34sp</dimen>
+
+    <dimen name="common_location_size">14dp</dimen>
+    <dimen name="common_icon_size_small">16dp</dimen>
+
+</resources>

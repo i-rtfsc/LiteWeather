@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.journeyOS.city.ui.viewmodel.CityViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.journeyOS.city.ui.viewmodel.CityViewModel" />
+
+        <import type="com.journeyOS.liteframework.binding.viewadapter.recyclerview.LayoutManagers" />
+
+
+    </data>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:binding="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:background="@color/city_background"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/search_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:background="@color/colorPrimaryDark">
+
+            <ImageButton
+                android:id="@+id/action_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="?selectableItemBackgroundBorderless"
+                android:paddingLeft="@dimen/common_dimen"
+                app:srcCompat="@drawable/svg_back"
+                binding:onClickCommand="@{viewModel.finishClickCommand}" />
+
+            <EditText
+                android:id="@+id/searchTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/common_dimen"
+                android:layout_toRightOf="@+id/action_back"
+                android:background="@null"
+                android:drawableLeft="@drawable/svg_search"
+                android:drawablePadding="@dimen/common_dimen_tiny"
+                android:hint="@string/city_hint_search_box"
+                android:imeOptions="actionSearch"
+                android:inputType="textNoSuggestions"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textColorHint="@color/text_secondary"
+                android:textSize="16sp"
+                binding:onFocusChangeCommand="@{viewModel.onFocusChangeCommand}"
+                binding:textChanged="@{viewModel.textChangedCommand}" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:layout_alignParentBottom="true"
+                android:background="#fff"
+                android:backgroundTint="#10000000"
+                tools:targetApi="lollipop" />
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/city_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/search_top_bar"
+            binding:itemBinding="@{viewModel.itemBinding}"
+            binding:items="@{viewModel.observableList}"
+            binding:layoutManager="@{LayoutManagers.linear()}" />
+
+        <com.journeyOS.widget.SideLetterBar
+            android:id="@+id/side"
+            android:layout_width="@dimen/side_letter_bar_width"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/search_top_bar"
+            android:layout_alignParentRight="true" />
+
+        <TextView
+            android:id="@+id/tv_letter_overlay"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/overlay_bg"
+            android:gravity="center"
+            android:textColor="@color/city_text_primary"
+            android:textSize="@dimen/text_size_big"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</layout>

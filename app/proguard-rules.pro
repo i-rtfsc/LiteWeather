@@ -26,11 +26,17 @@
 
 #------------------------------------------主项目混淆规则----------------------------------------------
 #实体类不参与混淆
--keep class com.journeyOS.liteweather.entity.** { *; }
+-keep class com.journeyOS.core.entity.** { *; }
 
-#tkrefreshlayout
--keep class com.lcodecore.tkrefreshlayout.** { *; }
--dontwarn com.lcodecore.tkrefreshlayout.**
+-keep class com.journeyOS.core.data.source.local.city.City { *; }
+-keep class com.journeyOS.core.data.source.local.weather.Weather { *; }
+
+-keep public class * extends com.journeyOS.base.base.IModuleInit { *; }
+#-keep class com.journeyOS.base.base.BaseModuleInit { *; }
+#-keep class com.journeyOS.main.MainModuleInit { *; }
+#-keep class com.journeyOS.weather.WeatherModuleInit { *; }
+#-keep class com.journeyOS.setting.SettingModuleInit { *; }
+#-keep class com.journeyOS.city.CityModuleInit { *; }
 
 #-------------------------------------------LiteFramework混淆规则----------------------------------------------
 #1.实体类
@@ -43,7 +49,7 @@
 -keep public class * extends com.journeyOS.liteframework.binding.command.ResponseCommand{ *; }
 
 #3.自定义控件
--keep class com.journeyOS.liteframework.widget.** { *; }
+-keep class com.journeyOS.widget.** { *; }
 
 #4.第三方包
 #support

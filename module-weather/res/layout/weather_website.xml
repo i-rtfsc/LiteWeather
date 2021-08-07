@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.journeyOS.weather.ui.viewmodel.WeatherWebsiteViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.journeyOS.weather.ui.viewmodel.WeatherWebsiteViewModel" />
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:binding="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            style="@style/theme_wrap_layout"
+            binding:onClickCommand="@{viewModel.onClickCommand}">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/weather_support"
+                android:textColor="@color/text_secondary"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_dimen_small"
+            android:background="@android:color/transparent" />
+
+    </LinearLayout>
+
+</layout>

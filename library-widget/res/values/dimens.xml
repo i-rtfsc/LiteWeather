@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="settings_corners">10dp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="divider_size">0.5dp</dimen>
+    <dimen name="divider_size_secondary">0.5dp</dimen>
 </resources>

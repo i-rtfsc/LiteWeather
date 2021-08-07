@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.journeyOS.weather.ui.viewmodel.WeatherIndicesViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.journeyOS.weather.ui.viewmodel.WeatherIndicesViewModel" />
+
+        <import type="com.journeyOS.liteframework.binding.viewadapter.recyclerview.LayoutManagers" />
+
+    </data>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:binding="http://schemas.android.com/tools"
+        style="@style/theme_wrap_layout">
+
+        <!--或者直接把item_indices.xml的布局放在这也是可以的-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            binding:itemBinding="@{viewModel.itemBinding}"
+            binding:items="@{viewModel.observableList}"
+            binding:layoutManager="@{LayoutManagers.linear()}" />
+
+    </LinearLayout>
+</layout>

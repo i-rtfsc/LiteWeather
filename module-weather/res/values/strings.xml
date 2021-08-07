@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">和风天气</string>
+    <string name="weather_detail">详情</string>
+    <string name="weather_apparent_temperature">体感温度(°C)</string>
+    <string name="weather_visibility">能见度(公里)</string>
+    <string name="weather_precipitation">当前小时降水量(毫米)</string>
+    <string name="weather_day">每日</string>
+    <string name="weather_hour">每时</string>
+    <string name="weather_air_quality">空气质量</string>
+    <string name="weather_air_pm25">PM2.5</string>
+    <string name="weather_air_pm10">PM10</string>
+    <string name="weather_air_so2">SO2</string>
+    <string name="weather_air_no2">NO2</string>
+    <string name="weather_sun_and_wind">太阳和风</string>
+    <string name="weather_life">生活指数</string>
+    <string name="weather_support">数据来源：和风天气（https://dev.qweather.com）</string>
+</resources>

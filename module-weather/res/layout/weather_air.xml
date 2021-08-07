@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.journeyOS.weather.ui.viewmodel.WeatherAirViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.journeyOS.weather.ui.viewmodel.WeatherAirViewModel" />
+
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:binding="http://schemas.android.com/apk/res-auto"
+        style="@style/theme_wrap_layout">
+
+        <!-- 空气质量 -->
+        <TextView
+            style="@style/theme_section_title"
+            android:text="@string/weather_air_quality" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/divider_linearlayout"
+            android:orientation="horizontal"
+            android:paddingLeft="0dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="0dp"
+            android:showDividers="none">
+
+            <com.journeyOS.widget.weather.AqiView
+                android:id="@+id/aqi_view"
+                android:layout_width="140dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_vertical"
+                binding:aqiData="@{viewModel.aqiEntity}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.journeyOS.widget.weather.WeatherTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    app:bottomColor="@color/divider_secondary"
+                    app:left="@string/weather_air_pm25"
+                    app:leftTextColor="@color/text_secondary"
+                    app:leftTextSize="14dp"
+                    app:rightTextColor="@color/text_primary"
+                    app:rightTextSize="14dp"
+                    binding:summary="@{viewModel.airNowEntity.pm2p5}" />
+
+                <com.journeyOS.widget.weather.WeatherTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    app:bottomColor="@color/divider_secondary"
+                    app:left="@string/weather_air_pm10"
+                    app:leftTextColor="@color/text_secondary"
+                    app:leftTextSize="14dp"
+                    app:rightTextColor="@color/text_primary"
+                    app:rightTextSize="14dp"
+                    binding:summary="@{viewModel.airNowEntity.pm10}" />
+
+                <com.journeyOS.widget.weather.WeatherTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    app:bottomColor="@color/divider_secondary"
+                    app:left="@string/weather_air_so2"
+                    app:leftTextColor="@color/text_secondary"
+                    app:leftTextSize="14dp"
+                    app:rightTextColor="@color/text_primary"
+                    app:rightTextSize="14dp"
+                    binding:summary="@{viewModel.airNowEntity.so2}" />
+
+                <com.journeyOS.widget.weather.WeatherTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    app:bottomColor="@color/divider_secondary"
+                    app:left="@string/weather_air_no2"
+                    app:leftTextColor="@color/text_secondary"
+                    app:leftTextSize="14dp"
+                    app:rightTextColor="@color/text_primary"
+                    app:rightTextSize="14dp"
+                    app:showBottom="false"
+                    binding:summary="@{viewModel.airNowEntity.no2}" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

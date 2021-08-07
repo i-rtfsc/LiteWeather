@@ -37,7 +37,7 @@ ext {
 
     /*3方库版本*/
     dependencies = [
-            "lite-framework"                       : "com.github.journeyOS:LiteFramework:2.2.0",
+            "lite-framework"                       : "com.github.journeyOS:LiteFramework:2.3.0",
             //Google AAC
             "lifecycle-extensions"                 : "androidx.lifecycle:lifecycle-extensions:2.0.0",
             "lifecycle-compiler"                   : "androidx.lifecycle:lifecycle-compiler:2.0.0",
@@ -73,10 +73,18 @@ ext {
             "bindingcollectionadapter-recyclerview": "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:4.0.0",
             "bindingcollectionadapter-viewpager2"  : "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-viewpager2:4.0.0",
             //阿里路由框架
-            "arouter-api"                          : "com.alibaba:arouter-api:1.5.2",
+            "arouter-api"                          : "com.alibaba:arouter-api:1.5.2",//这个版本在三星手机上init之后还提示没init
             "arouter-compiler"                     : "com.alibaba:arouter-compiler:1.5.2",
+            //"arouter-api"                          : "com.alibaba:arouter-api:1.4.1",//这个版本在国内某手机上init之后还提示没init
+            //"arouter-compiler"                     : "com.alibaba:arouter-compiler:1.2.2",
+    ]
+
+    /*3方库版本*/
+    others = [
             //SwitchButton
-            "switchbutton"                         : "com.kyleduo.switchbutton:library:2.1.0",
+            "switchbutton"    : "com.kyleduo.switchbutton:library:2.1.0",
+            "bottom-tab"      : "me.majiajie:pager-bottom-tab-strip:2.2.5",
+            "expandablelayout": "net.cachapa.expandablelayout:expandablelayout:2.9.2"
     ]
 }
 

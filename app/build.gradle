@@ -11,6 +11,16 @@ android {
         versionName rootProject.ext.versionName
 
         vectorDrawables.useSupportLibrary = true
+
+        //使用buildConfigField向BuildConfig类中写入常量
+        buildConfigField("int", "BUILD_VERSION_CODE", rootProject.ext.versionCode + "")
+        buildConfigField("String", "BUILD_VERSION_NAME", "\"" + rootProject.ext.versionName + "\"")
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     sourceSets {
@@ -40,10 +50,6 @@ android {
         }
     }
 
-    dataBinding {
-        enabled true
-    }
-
     buildTypes {
         release {
             minifyEnabled true
@@ -59,10 +65,12 @@ android {
         }
     }
 
-//    compileOptions {
-//        sourceCompatibility JavaVersion.VERSION_1_8
-//        targetCompatibility JavaVersion.VERSION_1_8
-//    }
+    //统一资源前缀，规范资源引用
+    //https://www.jianshu.com/p/e498a4f8bfa7
+    //resourcePrefix "app_"
+    dataBinding {
+        enabled true
+    }
 
     applicationVariants.all { variant ->
         if (variant.buildType.name == 'release') {
@@ -77,28 +85,18 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    def support = rootProject.ext.support
-    def dependencies = rootProject.ext.dependencies
-
-    //support
-    implementation support["design"]
-
+    //组件依赖基础库
     implementation project(':library-base')
+    //依赖控件库
     implementation project(':library-widget')
-
-    annotationProcessor dependencies["room-compiler"]
-
-    //下拉刷新
-    implementation 'com.github.recruit-lifestyle:WaveSwipeRefreshLayout:1.6'
-
-    //底部tabBar
-    implementation('me.majiajie:pager-bottom-tab-strip:2.2.5') {
-        exclude group: 'com.android.support'
-    }
-
-    //内存泄漏测试
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
-    debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.3'
+    //主业务模块
+    implementation project(':module-main')
+    //身份验证模块
+    implementation project(':module-weather')
+    //城市模块
+    implementation project(':module-city')
+    //应用模块
+    implementation project(':module-setting')
 }
 
 

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.journeyOS.weather.ui.viewmodel.WeatherNowViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.journeyOS.weather.ui.viewmodel.WeatherNowViewModel" />
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:binding="http://schemas.android.com/apk/res-auto"
+        style="@style/theme_wrap_layout">
+
+        <!-- 详细信息 -->
+        <TextView
+            style="@style/theme_section_title"
+            android:text="@string/weather_detail" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/divider_linearlayout"
+            android:orientation="horizontal"
+            android:paddingLeft="0dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="0dp"
+            android:showDividers="none">
+
+            <LinearLayout
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.journeyOS.widget.weather.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:singleLine="true"
+                    android:text="@{viewModel.nowEntity.temp}"
+                    android:textColor="@color/text_primary"
+                    android:textSize="52dp" />
+
+                <com.journeyOS.widget.weather.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:singleLine="true"
+                    android:text="@{viewModel.cityEvent.adm1+viewModel.cityEvent.cityName}"
+                    android:textColor="@color/text_primary"
+                    android:textSize="14dp" />
+
+                <com.journeyOS.widget.weather.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:singleLine="true"
+                    android:text="@{viewModel.nowEntity.text}"
+                    android:textColor="@color/text_primary"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.journeyOS.widget.weather.WeatherTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    app:bottomColor="@color/divider_secondary"
+                    app:left="@string/weather_apparent_temperature"
+                    app:leftTextColor="@color/text_primary"
+                    app:leftTextSize="14dp"
+                    app:rightTextColor="@color/text_secondary"
+                    app:rightTextSize="14dp"
+                    binding:summary="@{viewModel.nowEntity.feelsLike}" />
+
+                <com.journeyOS.widget.weather.WeatherTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    app:bottomColor="@color/divider_secondary"
+                    app:left="@string/weather_humidity"
+                    app:leftTextColor="@color/text_primary"
+                    app:leftTextSize="14dp"
+                    app:rightTextColor="@color/text_secondary"
+                    app:rightTextSize="14dp"
+                    binding:summary="@{viewModel.nowEntity.humidity}" />
+
+                <com.journeyOS.widget.weather.WeatherTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    app:bottomColor="@color/divider_secondary"
+                    app:left="@string/weather_visibility"
+                    app:leftTextColor="@color/text_primary"
+                    app:leftTextSize="14dp"
+                    app:rightTextColor="@color/text_secondary"
+                    app:rightTextSize="14dp"
+                    binding:summary="@{viewModel.nowEntity.vis}" />
+
+                <com.journeyOS.widget.weather.WeatherTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    app:bottomColor="@color/divider_secondary"
+                    app:left="@string/weather_precipitation"
+                    app:leftTextColor="@color/text_primary"
+                    app:leftTextSize="14dp"
+                    app:rightTextColor="@color/text_secondary"
+                    app:rightTextSize="14dp"
+                    app:showBottom="false"
+                    binding:summary="@{viewModel.nowEntity.precip}" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

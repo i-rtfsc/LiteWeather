@@ -46,7 +46,7 @@ public class RainAndSnowSky extends BaseSky {
     public RainAndSnowSky(Context context, boolean isNight) {
         super(context, isNight);
         mContext = context;
-        snowDrawable = new GradientDrawable(GradientDrawable.Orientation.BL_TR, new int[]{0x99ffffff, 0x00ffffff});
+        snowDrawable = new GradientDrawable(GradientDrawable.Orientation.BL_TR, new int[]{0x88ffffff, 0x33ffffff});
         snowDrawable.setShape(GradientDrawable.OVAL);
         snowDrawable.setGradientType(GradientDrawable.RADIAL_GRADIENT);
         rainDrawable = new RainDrawable();

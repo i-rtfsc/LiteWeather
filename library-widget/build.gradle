@@ -7,18 +7,19 @@ android {
         }
     }
     //统一资源前缀，规范资源引用
-    resourcePrefix "widget_"
+    //https://www.jianshu.com/p/e498a4f8bfa7
+    //resourcePrefix "widget_"
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    def dependencies = rootProject.ext.dependencies
+    def others = rootProject.ext.others
 
     //组件依赖基础库
     api project(':library-base')
     //ios样式开关
-    api dependencies.switchbutton
+    api others.switchbutton
     //组件中依赖阿里路由编译框架
-    annotationProcessor dependencies["arouter-compiler"]
+    //annotationProcessor dependencies["arouter-compiler"]
 }

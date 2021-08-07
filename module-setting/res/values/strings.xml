@@ -1,0 +1,16 @@
+<resources>
+    <string name="developer">开发者</string>
+
+    <string name="city_select">城市选择</string>
+    <string name="weather_key">天气帐号</string>
+    <string name="weather_key_select">帐号选择</string>
+
+    <string name="version">版本</string>
+    <string name="email">邮箱</string>
+    <string name="email_account">anqi.huang@outlook.com</string>
+    <string name="github">Github</string>
+    <string name="github_account">https://github.com/journeyOS/LiteWeather</string>
+
+    <string name="night_sky">夜晚天空</string>
+    <string name="night_sky_summary">是否使用夜晚的天空</string>
+</resources>

@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.journeyOS.liteweather.app.AppApplication"
+        android:name="com.journeyOS.liteweather.AppApplication"
         android:allowBackup="true"
         android:icon="@drawable/svg_weather_icon"
         android:label="@string/app_name"
@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.journeyOS.liteweather.ui.weather.activity.TabBarActivity">
+        <activity android:name="com.journeyOS.main.ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

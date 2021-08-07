@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="com.journeyOS.weather.ui.viewmodel.WeatherHourlyViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.journeyOS.weather.ui.viewmodel.WeatherHourlyViewModel" />
+
+        <import type="com.journeyOS.liteframework.binding.viewadapter.recyclerview.LayoutManagers" />
+
+        <import type="com.journeyOS.liteframework.binding.viewadapter.recyclerview.LineManagers" />
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:binding="http://schemas.android.com/apk/res-auto"
+        style="@style/theme_wrap_layout">
+
+        <!-- 每时 -->
+        <TextView
+            style="@style/theme_section_title"
+            android:text="@string/weather_hour" />
+
+        <com.journeyOS.widget.weather.HourlyForecastView
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            binding:hourlyData="@{viewModel.hourlyDataList}" />
+
+    </LinearLayout>
+
+</layout>

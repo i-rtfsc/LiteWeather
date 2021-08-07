@@ -1,0 +1,32 @@
+apply from: "../module.gradle"
+
+android {
+    defaultConfig {
+        //如果是独立模块，则使用当前组件的包名
+        if (isBuildModule.toBoolean()) {
+            applicationId "com.journeyOS.main"
+        }
+    }
+    //统一资源前缀，规范资源引用
+    //https://www.jianshu.com/p/e498a4f8bfa7
+    //resourcePrefix "main_"
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    def dependencies = rootProject.ext.dependencies
+    def others = rootProject.ext.others
+
+    implementation project(':library-base')
+    implementation project(':library-widget')
+
+    //底部tabBar
+    implementation(others["bottom-tab"]) {
+        exclude group: 'com.android.support'
+    }
+
+    //组件中依赖阿里路由编译框架
+    annotationProcessor dependencies["arouter-compiler"]
+}
+

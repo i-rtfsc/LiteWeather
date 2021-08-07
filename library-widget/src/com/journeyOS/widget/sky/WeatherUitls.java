@@ -17,17 +17,17 @@
 package com.journeyOS.widget.sky;
 
 
-import android.util.Log;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
 public class WeatherUitls {
 
-    public static SkyType convertWeatherType(String weatherCode, String sunset, String sunrise) {
-        Log.d("solo-debug", "convertWeatherType() called with: weatherCode = [" + weatherCode + "], sunset = [" + sunset + "], sunrise = [" + sunrise + "]");
-        final boolean isNight = isNight(sunset, sunrise);
+    public static SkyType convertWeatherType(String weatherCode) {
+        return convertWeatherType(weatherCode, false);
+    }
+
+    public static SkyType convertWeatherType(String weatherCode, boolean isNight) {
         try {
             final int w = Integer.valueOf(weatherCode);
             switch (w) {
@@ -98,6 +98,11 @@ public class WeatherUitls {
             e.printStackTrace();
         }
         return isNight ? SkyType.UNKNOWN_N : SkyType.UNKNOWN_D;
+    }
+
+    public static SkyType convertWeatherType(String weatherCode, String sunset, String sunrise) {
+        final boolean isNight = isNight(sunset, sunrise);
+        return convertWeatherType(weatherCode, isNight);
     }
 
     public static boolean isNight(String sunset, String sunrise) {

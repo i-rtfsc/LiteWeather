@@ -1,0 +1,36 @@
+apply plugin: 'com.android.library'
+
+android {
+    def androidSdk = rootProject.ext.androidSdk
+    compileSdkVersion androidSdk.compileSdkVersion
+    defaultConfig {
+        minSdkVersion androidSdk.minSdkVersion
+        targetSdkVersion androidSdk.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        vectorDrawables.useSupportLibrary = true
+
+        //使用buildConfigField向BuildConfig类中写入常量
+        buildConfigField "int", "BUILD_VERSION_CODE", rootProject.ext.versionCode + ""
+        buildConfigField "String", "BUILD_VERSION_NAME", "\"" + rootProject.ext.versionName + "\""
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            res.srcDirs = ['res']
+        }
+    }
+
+    //统一资源前缀，规范资源引用
+    //https://www.jianshu.com/p/e498a4f8bfa7
+    //resourcePrefix "theme_"
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    def support = rootProject.ext.support
+    //support
+    implementation support["appcompat-v7"]
+}
