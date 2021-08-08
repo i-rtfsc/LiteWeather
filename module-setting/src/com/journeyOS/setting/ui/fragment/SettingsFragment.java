@@ -44,15 +44,14 @@ public class SettingsFragment extends BaseFragment<FragmentSettingsBinding, Sett
     @Override
     public void initData() {
         super.initData();
-        binding.expandableWeatherPort.collapse(false);
         viewModel.initData();
-
+        binding.expandableWeatherPort.collapse(false);
+        RxBus.getDefault().post(SkyType.RAIN_SNOW_D);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        RxBus.getDefault().post(SkyType.RAIN_SNOW_D);
     }
 
     @Override
@@ -72,7 +71,7 @@ public class SettingsFragment extends BaseFragment<FragmentSettingsBinding, Sett
 
     @Override
     public void initViewObservable() {
-        //监听下拉刷新完成
+        //监听账号点击事情
         viewModel.uiChange.keyClick.observe(this, new Observer() {
             @Override
             public void onChanged(@Nullable Object o) {
@@ -83,7 +82,7 @@ public class SettingsFragment extends BaseFragment<FragmentSettingsBinding, Sett
                 }
             }
         });
-
+        //监听选中的账号
         viewModel.uiChange.weatherKeyClick.observe(this, new Observer<String>() {
             @Override
             public void onChanged(String key) {
