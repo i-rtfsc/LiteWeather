@@ -98,7 +98,7 @@ public class CityViewModel extends BaseViewModel<DataRepository> {
 
         observableList.clear();
 
-        CityHeadViewModel cityHeadViewModel = new CityHeadViewModel(this);
+        CityHeadViewModel cityHeadViewModel = new CityHeadViewModel(getApplication(), this, model);
         cityHeadViewModel.multiItemType(HEAD);
         observableList.add(cityHeadViewModel);
 

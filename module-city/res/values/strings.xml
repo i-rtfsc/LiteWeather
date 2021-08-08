@@ -1,6 +1,7 @@
 <resources>
     <string name="city_hint_search_box">输入城市名或拼音</string>
 
+    <string name="location_permission">定位权限被拒绝</string>
     <string name="city_located">定位城市</string>
     <string name="city_locating">正在定位</string>
     <string name="city_located_failed">定位失败</string>
