@@ -34,15 +34,14 @@ public class CityViewModel extends BaseViewModel<DataRepository> {
     private static final String HOT = "hot";
     private static final String BODY = "body";
 
-    private List<City> cityList = new ArrayList<>();
-    private List<City> hotCityList = new ArrayList<>();
+    private List<City> mCityList = new ArrayList<>();
+    private List<City> mHotCityList = new ArrayList<>();
 
     //封装一个界面发生改变的观察者
     public UIChangeObservable uiChange = new UIChangeObservable();
 
     public class UIChangeObservable {
         public SingleLiveEvent<Boolean> onFocusChange = new SingleLiveEvent<>();
-        public SingleLiveEvent<Boolean> onTextChange = new SingleLiveEvent<>();
     }
 
     public CityViewModel(@NonNull Application application, DataRepository model) {
@@ -83,14 +82,14 @@ public class CityViewModel extends BaseViewModel<DataRepository> {
 
 
     public void initData() {
-        if (cityList.size() == 0) {
-            cityList = model.getAllCity();
-            Collections.sort(cityList, new CityComparator());
+        if (mCityList.size() == 0) {
+            mCityList = model.getAllCity();
+            Collections.sort(mCityList, new CityComparator());
 
             long startTime = System.currentTimeMillis();
-            for (City city : cityList) {
+            for (City city : mCityList) {
                 if (CityHotViewModel.getHotCityId().contains(city.locationId)) {
-                    hotCityList.add(city);
+                    mHotCityList.add(city);
                 }
             }
             long endTime = System.currentTimeMillis();
@@ -104,7 +103,7 @@ public class CityViewModel extends BaseViewModel<DataRepository> {
         observableList.add(cityHeadViewModel);
 
         int firstHot = 0;
-        for (City city : hotCityList) {
+        for (City city : mHotCityList) {
             CityHotViewModel cityHotViewModel = new CityHotViewModel(this, model, city, firstHot == 0);
             firstHot++;
             cityHotViewModel.multiItemType(HOT);
@@ -112,7 +111,7 @@ public class CityViewModel extends BaseViewModel<DataRepository> {
         }
 
         String lastInitial = "";
-        for (City city : cityList) {
+        for (City city : mCityList) {
             boolean cityLetter = false;
             String currentInitial = city.adm1En.substring(0, 1);
             CityItemViewModel cityItemViewModel = new CityItemViewModel(this, model, city, currentInitial);
@@ -151,9 +150,9 @@ public class CityViewModel extends BaseViewModel<DataRepository> {
 
     public int getLetterPosition(String letter) {
         int position = 0;
-        for (City city : cityList) {
+        for (City city : mCityList) {
             if (letter.equalsIgnoreCase(city.adm1En.substring(0, 1))) {
-                position = cityList.indexOf(city);
+                position = mCityList.indexOf(city);
             }
         }
         return position;

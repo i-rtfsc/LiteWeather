@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -42,9 +41,7 @@ public class CityFragment extends BaseFragment<FragmentCityBinding, CityViewMode
     @Override
     public void initData() {
         super.initData();
-
         viewModel.initData();
-
         binding.side.setOverlay(binding.tvLetterOverlay);
         binding.side.setOnLetterChangedListener(new SideLetterBar.OnLetterChangedListener() {
             @Override
@@ -57,16 +54,6 @@ public class CityFragment extends BaseFragment<FragmentCityBinding, CityViewMode
 
     @Override
     public void initViewObservable() {
-        viewModel.uiChange.onFocusChange.observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean aBoolean) {
-//                if (viewModel.uiChange.onFocusChange.getValue()) {
-//                    binding.actionEmptyBtn.setVisibility(View.VISIBLE);
-//                } else {
-//                    binding.actionEmptyBtn.setVisibility(View.GONE);
-//                }
-            }
-        });
     }
 
 }
