@@ -13,6 +13,7 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:binding="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,9 +50,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:text="@string/city_locating"
+                    android:hint="@string/city_locating"
+                    android:text="@{viewModel.cityInfo}"
                     android:textColor="@color/city_text_primary"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    binding:onClickCommand="@{viewModel.cityOnClickCommand}" />
             </LinearLayout>
 
         </LinearLayout>

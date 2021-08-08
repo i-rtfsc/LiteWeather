@@ -21,6 +21,8 @@ dependencies {
     implementation project(':library-widget')
     implementation project(':module-core-data')
 
+    implementation "com.amap.api:location:latest.integration"
+
     //组件中依赖阿里路由编译框架
     annotationProcessor dependencies["arouter-compiler"]
 }

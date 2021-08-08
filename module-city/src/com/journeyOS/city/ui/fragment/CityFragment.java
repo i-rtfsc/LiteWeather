@@ -1,5 +1,6 @@
 package com.journeyOS.city.ui.fragment;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -16,7 +17,12 @@ import com.journeyOS.city.ui.viewmodel.CityViewModel;
 import com.journeyOS.core.app.AppViewModelFactory;
 import com.journeyOS.liteframework.base.BaseFragment;
 import com.journeyOS.liteframework.utils.KLog;
+import com.journeyOS.liteframework.utils.ToastUtils;
 import com.journeyOS.widget.SideLetterBar;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 @Route(path = RouterPath.Fragment.City.PAGER_CITY)
 public class CityFragment extends BaseFragment<FragmentCityBinding, CityViewModel> {
@@ -53,7 +59,30 @@ public class CityFragment extends BaseFragment<FragmentCityBinding, CityViewMode
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        requestLocationPermissions();
+    }
+
+    @Override
     public void initViewObservable() {
+    }
+
+    private void requestLocationPermissions() {
+        //请求打开定位权限
+        RxPermissions rxPermissions = new RxPermissions(this);
+        boolean isGranted = rxPermissions.isGranted(Manifest.permission.ACCESS_FINE_LOCATION);
+        if (!isGranted) {
+            Disposable disposable = rxPermissions.request(Manifest.permission.ACCESS_FINE_LOCATION)
+                    .subscribe(new Consumer<Boolean>() {
+                        @Override
+                        public void accept(Boolean aBoolean) throws Exception {
+                            if (!aBoolean) {
+                                ToastUtils.showShort(getString(R.string.location_permission));
+                            }
+                        }
+                    });
+        }
     }
 
 }
