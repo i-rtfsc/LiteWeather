@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.journeyOS.base.router.RouterPath;
-import com.journeyOS.core.app.AppViewModelFactory;
+import com.journeyOS.data.app.AppViewModelFactory;
 import com.journeyOS.liteframework.base.BaseFragment;
 import com.journeyOS.liteframework.bus.RxBus;
 import com.journeyOS.liteframework.utils.KLog;

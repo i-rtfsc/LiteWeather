@@ -14,7 +14,7 @@ import com.journeyOS.city.BR;
 import com.journeyOS.city.R;
 import com.journeyOS.city.databinding.FragmentCityBinding;
 import com.journeyOS.city.ui.viewmodel.CityViewModel;
-import com.journeyOS.core.app.AppViewModelFactory;
+import com.journeyOS.data.app.AppViewModelFactory;
 import com.journeyOS.liteframework.base.BaseFragment;
 import com.journeyOS.liteframework.utils.KLog;
 import com.journeyOS.liteframework.utils.ToastUtils;

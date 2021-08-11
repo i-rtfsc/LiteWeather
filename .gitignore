@@ -18,6 +18,9 @@ build/
 **/build/
 local.properties
 
+# ignore c/c++ build file
+**/.cxx/
+.cxx/
 
 #$ ignore keystore
 #keystore/

@@ -26,10 +26,10 @@
 
 #------------------------------------------主项目混淆规则----------------------------------------------
 #实体类不参与混淆
--keep class com.journeyOS.core.entity.** { *; }
+-keep class com.journeyOS.data.entity.** { *; }
 
--keep class com.journeyOS.core.data.source.local.city.City { *; }
--keep class com.journeyOS.core.data.source.local.weather.Weather { *; }
+-keep class com.journeyOS.data.source.local.city.City { *; }
+-keep class com.journeyOS.data.source.local.weather.Weather { *; }
 
 -keep public class * extends com.journeyOS.base.base.IModuleInit { *; }
 #-keep class com.journeyOS.base.base.BaseModuleInit { *; }

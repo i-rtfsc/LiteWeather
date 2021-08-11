@@ -3,7 +3,7 @@ package com.journeyOS.weather.ui.viewmodel;
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 
-import com.journeyOS.core.entity.AirNow;
+import com.journeyOS.data.entity.AirNow;
 import com.journeyOS.liteframework.base.MultiItemViewModel;
 import com.journeyOS.widget.weather.AqiView;
 

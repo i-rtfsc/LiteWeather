@@ -7,9 +7,9 @@ import androidx.databinding.ObservableArrayList;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableList;
 
-import com.journeyOS.core.data.DataRepository;
-import com.journeyOS.core.data.source.local.base.DBConfigs;
-import com.journeyOS.core.data.source.local.city.City;
+import com.journeyOS.data.DataRepository;
+import com.journeyOS.data.source.local.base.DBConfigs;
+import com.journeyOS.data.source.local.city.City;
 import com.journeyOS.liteframework.base.BaseViewModel;
 import com.journeyOS.liteframework.binding.command.BindingAction;
 import com.journeyOS.liteframework.binding.command.BindingCommand;
