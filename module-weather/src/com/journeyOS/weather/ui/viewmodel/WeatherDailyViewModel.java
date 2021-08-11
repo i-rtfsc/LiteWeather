@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 
 import com.journeyOS.base.utils.TimeUtils;
-import com.journeyOS.core.entity.WeatherDaily;
+import com.journeyOS.data.entity.WeatherDaily;
 import com.journeyOS.liteframework.base.MultiItemViewModel;
 import com.journeyOS.widget.weather.DailyForecastView;
 

@@ -19,7 +19,7 @@ dependencies {
 
     implementation project(':library-base')
     implementation project(':library-widget')
-    implementation project(':module-core-data')
+    implementation project(':module-data')
 
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 

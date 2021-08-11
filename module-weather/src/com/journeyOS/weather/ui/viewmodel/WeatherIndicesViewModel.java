@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.ObservableArrayList;
 import androidx.databinding.ObservableList;
 
-import com.journeyOS.core.entity.Indices;
+import com.journeyOS.data.entity.Indices;
 import com.journeyOS.liteframework.base.MultiItemViewModel;
 import com.journeyOS.liteframework.utils.KLog;
 import com.journeyOS.weather.BR;

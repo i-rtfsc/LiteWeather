@@ -3,9 +3,9 @@ package com.journeyOS.city.ui.viewmodel;
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 
-import com.journeyOS.core.data.DataRepository;
-import com.journeyOS.core.data.source.local.base.DBConfigs;
-import com.journeyOS.core.data.source.local.city.City;
+import com.journeyOS.data.DataRepository;
+import com.journeyOS.data.source.local.base.DBConfigs;
+import com.journeyOS.data.source.local.city.City;
 import com.journeyOS.liteframework.base.MultiItemViewModel;
 import com.journeyOS.liteframework.binding.command.BindingAction;
 import com.journeyOS.liteframework.binding.command.BindingCommand;

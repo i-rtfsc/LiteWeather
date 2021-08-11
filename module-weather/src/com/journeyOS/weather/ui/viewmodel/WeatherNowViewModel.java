@@ -3,8 +3,8 @@ package com.journeyOS.weather.ui.viewmodel;
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 
-import com.journeyOS.core.data.source.local.city.City;
-import com.journeyOS.core.entity.NowBase;
+import com.journeyOS.data.source.local.city.City;
+import com.journeyOS.data.entity.NowBase;
 import com.journeyOS.liteframework.base.MultiItemViewModel;
 
 import java.text.DateFormat;
