@@ -22,8 +22,8 @@
         tools:ignore="RtlHardcoded">
 
         <TextView
-            style="@style/theme_city_title"
             android:id="@+id/city_letter"
+            style="@style/theme_city_title"
             android:text="@{viewModel.cityLetter}"
             android:visibility="@{viewModel.cityLetterVisibility ? View.VISIBLE : View.GONE}" />
 
@@ -33,11 +33,11 @@
             android:layout_height="48dp"
             android:background="?selectableItemBackground"
             android:gravity="center_vertical"
-            android:paddingLeft="@dimen/common_dimen_big"
+            android:layout_marginStart="@dimen/common_dimen_big"
             android:text="@{viewModel.city.adm1+viewModel.city.cityName}"
             android:textColor="@color/city_text_primary"
             android:textSize="@dimen/text_size_medium"
-            binding:onClickCommand="@{viewModel.cityOnClickCommand}" />
+            binding:onClickCommand="@{viewModel.onCityClickCommand}" />
 
     </LinearLayout>
 </layout>

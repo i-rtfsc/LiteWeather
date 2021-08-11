@@ -16,14 +16,14 @@
         xmlns:binding="http://schemas.android.com/apk/res-auto"
         style="@style/theme_wrap_layout">
 
-        <!-- 太阳和风速 -->
+        <!-- 日月和风速 -->
         <TextView
             style="@style/theme_section_title"
-            android:text="@string/weather_sun_and_wind" />
+            android:text="@string/weather_sun_moon_and_wind" />
 
         <com.journeyOS.widget.weather.AstroView
             android:layout_width="match_parent"
-            android:layout_height="144dp"
+            android:layout_height="160dp"
             binding:astroData="@{viewModel.astroEntity}" />
 
     </LinearLayout>

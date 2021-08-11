@@ -14,7 +14,6 @@ import java.util.List;
 public class WeatherDailyViewModel extends MultiItemViewModel<WeatherViewModel> {
     public ObservableField<List<DailyForecastView.DailyData>> dailyDataList = new ObservableField<>();
 
-
     public WeatherDailyViewModel(@NonNull WeatherViewModel viewModel, WeatherDaily weatherDaily) {
         super(viewModel);
         parseWeatherDaily(weatherDaily);

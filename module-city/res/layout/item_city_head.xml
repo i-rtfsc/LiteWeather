@@ -43,18 +43,19 @@
                     android:layout_width="@dimen/common_icon_size_small"
                     android:layout_height="@dimen/common_icon_size_small"
                     app:srcCompat="@drawable/svg_location"
+                    binding:onClickCommand="@{viewModel.onLocationClickCommand}"
                     tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/tv_located_city"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     android:hint="@string/city_locating"
                     android:text="@{viewModel.cityInfo}"
                     android:textColor="@color/city_text_primary"
                     android:textSize="16sp"
-                    binding:onClickCommand="@{viewModel.cityOnClickCommand}" />
+                    binding:onClickCommand="@{viewModel.onCityClickCommand}" />
             </LinearLayout>
 
         </LinearLayout>

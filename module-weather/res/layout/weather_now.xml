@@ -75,6 +75,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
                     app:bottomColor="@color/divider_secondary"
+                    app:left="@string/weather_update_time"
+                    app:leftTextColor="@color/text_primary"
+                    app:leftTextSize="14dp"
+                    app:rightTextColor="@color/text_secondary"
+                    app:rightTextSize="14dp"
+                    binding:summary="@{viewModel.updateTime}" />
+
+                <com.journeyOS.widget.weather.WeatherTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    app:bottomColor="@color/divider_secondary"
                     app:left="@string/weather_apparent_temperature"
                     app:leftTextColor="@color/text_primary"
                     app:leftTextSize="14dp"

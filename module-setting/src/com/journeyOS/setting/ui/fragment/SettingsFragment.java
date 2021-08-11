@@ -38,6 +38,11 @@ public class SettingsFragment extends BaseFragment<FragmentSettingsBinding, Sett
     @Override
     public SettingsViewModel initViewModel() {
         AppViewModelFactory factory = AppViewModelFactory.getInstance(getActivity().getApplication());
+        //因为AppViewModelFactory所在的组件不依赖setting组件，所以只能反射构造SettingsViewModel
+        //为了不用每一个XXXViewModel都有到AppViewModelFactory中写死其className
+        //所以setMode的目的是为了得到className以方便反射
+        //如果不调用setModel，则默认会调用SettingsViewModel(@NonNull Application application)构造方法
+        factory.setModel(SettingsViewModel.class);
         return ViewModelProviders.of(this, factory).get(SettingsViewModel.class);
     }
 

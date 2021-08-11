@@ -21,8 +21,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
         android:background="@color/city_background"
+        android:fitsSystemWindows="true"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -39,16 +39,16 @@
                 android:background="?selectableItemBackgroundBorderless"
                 android:paddingLeft="@dimen/common_dimen"
                 app:srcCompat="@drawable/svg_back"
-                binding:onClickCommand="@{viewModel.finishClickCommand}" />
+                binding:onClickCommand="@{viewModel.onFinishClickCommand}" />
 
             <EditText
                 android:id="@+id/searchTextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/common_dimen"
-                android:layout_toRightOf="@+id/action_back"
+                android:layout_marginStart="@dimen/common_dimen"
+                android:layout_toEndOf="@+id/action_back"
                 android:background="@null"
-                android:drawableLeft="@drawable/svg_search"
+                android:drawableStart="@drawable/svg_search"
                 android:drawablePadding="@dimen/common_dimen_tiny"
                 android:hint="@string/city_hint_search_box"
                 android:imeOptions="actionSearch"
@@ -58,7 +58,7 @@
                 android:textColorHint="@color/text_secondary"
                 android:textSize="16sp"
                 binding:onFocusChangeCommand="@{viewModel.onFocusChangeCommand}"
-                binding:textChanged="@{viewModel.textChangedCommand}" />
+                binding:textChanged="@{viewModel.onTextChangedCommand}" />
 
             <View
                 android:layout_width="match_parent"
@@ -84,7 +84,7 @@
             android:layout_width="@dimen/side_letter_bar_width"
             android:layout_height="match_parent"
             android:layout_below="@+id/search_top_bar"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:id="@+id/tv_letter_overlay"

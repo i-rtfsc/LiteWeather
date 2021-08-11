@@ -23,7 +23,6 @@ public class WeatherIndicesViewModel extends MultiItemViewModel<WeatherViewModel
     //给RecyclerView添加ItemBinding
     public ItemBinding<IndicesViewModel> itemBinding = ItemBinding.of(BR.viewModel, R.layout.item_indices);
 
-
     public WeatherIndicesViewModel(@NonNull WeatherViewModel viewModel, Indices indices) {
         super(viewModel);
         parseIndices(indices);
@@ -128,7 +127,6 @@ public class WeatherIndicesViewModel extends MultiItemViewModel<WeatherViewModel
             }
         }
     }
-
 
     /**
      * 升序

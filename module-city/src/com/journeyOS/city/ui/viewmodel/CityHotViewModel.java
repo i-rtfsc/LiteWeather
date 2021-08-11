@@ -18,23 +18,25 @@ import java.util.List;
 
 public class CityHotViewModel extends MultiItemViewModel<CityViewModel> {
     private static final String TAG = CityHotViewModel.class.getSimpleName();
+
     public ObservableField<Boolean> titleVisibility = new ObservableField<>(false);
     public ObservableField<City> city = new ObservableField<>();
-    private DataRepository repository = null;
+
+    private DataRepository mRepository = null;
 
     public CityHotViewModel(@NonNull CityViewModel viewModel, DataRepository repository, City city, boolean visibility) {
         super(viewModel);
-        this.repository = repository;
+        this.mRepository = repository;
         this.city.set(city);
         titleVisibility.set(visibility);
     }
 
-    //按钮点击事件
-    public BindingCommand cityOnClickCommand = new BindingCommand(new BindingAction() {
+    //点击事件
+    public BindingCommand onCityClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
             KLog.d(TAG, "click city item");
-            repository.put(DBConfigs.Settings.LOCATION_ID, JsonUtils.toJson(city.get()));
+            mRepository.put(DBConfigs.Settings.LOCATION_ID, JsonUtils.toJson(city.get()));
             RxBus.getDefault().post(city.get());
             viewModel.finish();
         }
