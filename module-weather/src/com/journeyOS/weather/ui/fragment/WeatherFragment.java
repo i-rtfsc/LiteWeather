@@ -29,8 +29,8 @@ import io.reactivex.functions.Consumer;
 @Route(path = RouterPath.Fragment.Weather.PAGER_WEATHER)
 public class WeatherFragment extends BaseFragment<FragmentWeatherBinding, WeatherViewModel> {
     private static final String TAG = WeatherFragment.class.getSimpleName();
-    private Disposable mSubscription;
 
+    private Disposable mSubscription;
     private SkyType mSkyType = SkyType.DEFAULT;
 
     @Override
@@ -45,8 +45,12 @@ public class WeatherFragment extends BaseFragment<FragmentWeatherBinding, Weathe
 
     @Override
     public WeatherViewModel initViewModel() {
-        //使用自定义的ViewModelFactory来创建ViewModel，如果不重写该方法，则默认会调用NetWorkViewModel(@NonNull Application application)构造方法
         AppViewModelFactory factory = AppViewModelFactory.getInstance(getActivity().getApplication());
+        //因为AppViewModelFactory所在的组件不依赖weather组件，所以只能反射构造WeatherViewModel
+        //为了不用每一个XXXViewModel都要到AppViewModelFactory中写死其className
+        //所以setMode的目的是为了得到className以方便反射
+        //如果不调用setModel，则默认会调用WeatherViewModel(@NonNull Application application)构造方法
+        factory.setModel(WeatherViewModel.class);
         return ViewModelProviders.of(this, factory).get(WeatherViewModel.class);
     }
 

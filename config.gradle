@@ -12,11 +12,11 @@ ext {
 
     //android开发版本配置
     androidSdk = [
-            compileSdkVersion: 29,
+            compileSdkVersion: 30,
             buildToolsVersion: "28.0.3",
             applicationId    : "com.journeyOS.liteweather",
-            minSdkVersion    : 15,
-            targetSdkVersion : 29,
+            minSdkVersion    : 17,
+            targetSdkVersion : 30,
     ]
 
     //version配置
@@ -35,7 +35,7 @@ ext {
             'animated-vector-drawable': "androidx.vectordrawable:vectordrawable-animated:${versions["support-version"]}",
     ]
 
-    /*3方库版本*/
+    /*3方核心库版本*/
     dependencies = [
             "lite-framework"                       : "com.github.journeyOS:LiteFramework:2.3.0",
             //Google AAC
@@ -73,10 +73,8 @@ ext {
             "bindingcollectionadapter-recyclerview": "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:4.0.0",
             "bindingcollectionadapter-viewpager2"  : "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-viewpager2:4.0.0",
             //阿里路由框架
-            "arouter-api"                          : "com.alibaba:arouter-api:1.5.2",//这个版本在三星手机上init之后还提示没init
+            "arouter-api"                          : "com.alibaba:arouter-api:1.5.2",
             "arouter-compiler"                     : "com.alibaba:arouter-compiler:1.5.2",
-            //"arouter-api"                          : "com.alibaba:arouter-api:1.4.1",//这个版本在国内某手机上init之后还提示没init
-            //"arouter-compiler"                     : "com.alibaba:arouter-compiler:1.2.2",
     ]
 
     /*3方库版本*/

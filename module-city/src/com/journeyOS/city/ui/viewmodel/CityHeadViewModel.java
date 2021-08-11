@@ -24,16 +24,25 @@ import java.util.List;
 
 public class CityHeadViewModel extends MultiItemViewModel<CityViewModel> {
     private static final String TAG = CityHeadViewModel.class.getSimpleName();
+
     public ObservableField<String> cityInfo = new ObservableField<>();
 
-    private Application mApplication;
-    private DataRepository mRepository;
-    private City mCity;
-    //声明AMapLocationClient类对象
+    private Application mApplication = null;
+    private DataRepository mRepository = null;
+    private City mCity = null;
     public AMapLocationClient mLocationClient = null;
 
-    //按钮点击事件
-    public BindingCommand cityOnClickCommand = new BindingCommand(new BindingAction() {
+    //点击定位事件
+    public BindingCommand onLocationClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            KLog.d(TAG, "click location icon item");
+            startLocation();
+        }
+    });
+
+    //点击城市事件
+    public BindingCommand onCityClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
             KLog.d(TAG, "click location city item");
@@ -45,9 +54,8 @@ public class CityHeadViewModel extends MultiItemViewModel<CityViewModel> {
 
     public CityHeadViewModel(@NonNull Application application, @NonNull CityViewModel viewModel, DataRepository repository) {
         super(viewModel);
-        mApplication = application;
-        mRepository = repository;
-        cityInfo.set(application.getString(R.string.city_locating));
+        this.mApplication = application;
+        this.mRepository = repository;
         startLocation();
     }
 
@@ -57,6 +65,7 @@ public class CityHeadViewModel extends MultiItemViewModel<CityViewModel> {
             initLocation();
         }
         KLog.d(TAG, "start location");
+        cityInfo.set(mApplication.getString(R.string.city_locating));
         mLocationClient.startLocation();
     }
 
@@ -71,6 +80,7 @@ public class CityHeadViewModel extends MultiItemViewModel<CityViewModel> {
         if (mLocationClient != null) {
             KLog.d(TAG, "destroy location");
             mLocationClient.onDestroy();
+            mLocationClient = null;
         }
     }
 
@@ -84,23 +94,26 @@ public class CityHeadViewModel extends MultiItemViewModel<CityViewModel> {
         mLocationClient.setLocationListener(new AMapLocationListener() {
             @Override
             public void onLocationChanged(AMapLocation aMapLocation) {
-                String district = aMapLocation.getDistrict();
-                KLog.d(TAG, "aMapLocation = [" + aMapLocation.toString() + "]");
-                if (district == null) {
-                    district = aMapLocation.getCity();
-                }
-                List<City> cities = mRepository.matchCity(district);
-                for (City matchCity : cities) {
-                    KLog.d(TAG, "matchCity = [" + matchCity.toString() + "]");
-                    mCity = matchCity;
-                    cityInfo.set(matchCity.adm1 + matchCity.cityName);
-                }
+                if (AMapLocation.LOCATION_SUCCESS == aMapLocation.getErrorCode()) {
+                    String district = aMapLocation.getDistrict();
+                    KLog.d(TAG, "aMapLocation = [" + aMapLocation.toString() + "]");
+                    if (district == null) {
+                        district = aMapLocation.getCity();
+                    }
+                    List<City> cities = mRepository.matchCity(district);
+                    for (City matchCity : cities) {
+                        KLog.d(TAG, "matchCity = [" + matchCity.toString() + "]");
+                        mCity = matchCity;
+                        cityInfo.set(matchCity.adm1 + matchCity.cityName);
+                    }
 
-                stopLocation();
-                destroyLocation();
+                    stopLocation();
+                    destroyLocation();
+                } else {
+                    KLog.d(TAG, "location error = [" + aMapLocation.getErrorInfo() + "]");
+                }
             }
         });
     }
-
 
 }

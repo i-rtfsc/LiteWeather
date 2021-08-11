@@ -48,7 +48,7 @@ public class CityViewModel extends BaseViewModel<DataRepository> {
         super(application, model);
     }
 
-    public BindingCommand finishClickCommand = new BindingCommand(new BindingAction() {
+    public BindingCommand onFinishClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
             finish();
@@ -63,7 +63,7 @@ public class CityViewModel extends BaseViewModel<DataRepository> {
         }
     });
 
-    public BindingCommand<String> textChangedCommand = new BindingCommand<>(new BindingConsumer<String>() {
+    public BindingCommand<String> onTextChangedCommand = new BindingCommand<>(new BindingConsumer<String>() {
         @Override
         public void call(String text) {
             if (TextUtils.isEmpty(text)) {

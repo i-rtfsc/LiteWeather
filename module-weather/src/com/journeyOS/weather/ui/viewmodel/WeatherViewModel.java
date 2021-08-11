@@ -15,7 +15,6 @@ import com.journeyOS.core.data.source.local.weather.Weather;
 import com.journeyOS.core.entity.AirNow;
 import com.journeyOS.core.entity.Indices;
 import com.journeyOS.core.entity.NowBase;
-import com.journeyOS.core.entity.Sun;
 import com.journeyOS.core.entity.WeatherDaily;
 import com.journeyOS.core.entity.WeatherHourly;
 import com.journeyOS.liteframework.base.BaseViewModel;
@@ -58,6 +57,8 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
     private String mKey = null;
     private String locationId = DBConfigs.Settings.LOCATION_ID_DEFAULT;
     public City mCity = DBConfigs.City.getDefaultCity();
+    //当前天气信息
+    private NowBase mWeatherNow = null;
 
     //封装一个界面发生改变的观察者
     public UIChangeObservable uiChange = new UIChangeObservable();
@@ -69,13 +70,10 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
         public SingleLiveEvent<SkyType> skyTypeEvent = new SingleLiveEvent<>();
     }
 
-    //查询到的天气结果存下来，传给sun
-    private NowBase mWeatherNow = null;
-    private WeatherDaily mWeatherDaily = null;
-
     public WeatherViewModel(@NonNull Application application, DataRepository repository) {
         super(application, repository);
         mKey = model.getString(DBConfigs.Settings.WEATHER_KEY, DBConfigs.Settings.WEATHER_KEY_DEFAULT);
+        //固定view的位置
         ensureMultiItemViewPos();
     }
 
@@ -139,7 +137,7 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
         wAVM.multiItemType(AIR);
         observableList.add(AIR, wAVM);
 
-        WeatherSunViewModel wSVM = new WeatherSunViewModel(this, null, null, null);
+        WeatherSunViewModel wSVM = new WeatherSunViewModel(this, null, null);
         wSVM.multiItemType(SUN);
         observableList.add(SUN, wSVM);
 
@@ -251,34 +249,34 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
             long diffHours = TimeUtils.getDiffHours(startTime, endTime);
             KLog.d(TAG, "startTime = [" + startTime + "], endTime = [" + endTime + "], diffHours = [" + diffHours + "]");
             if (diffHours < 4) {
-                KLog.d(TAG, "weather now exists = [" + (weather.now != null) + "]");
+                KLog.d(TAG, "weather now not exists = [" + StringUtils.isSpace(weather.now) + "]");
                 if (StringUtils.isSpace(weather.now)) {
                     requestWeatherNow(mKey, locationId);
                 } else {
                     try {
                         NowBase nowBase = JsonUtils.fromJson(weather.now, NowBase.class);
                         initWeatherNowVm(nowBase);
-                        initSunVm(null);
                     } catch (Exception e) {
                         e.printStackTrace();
                         requestWeatherNow(mKey, locationId);
                     }
                 }
 
-                KLog.d(TAG, "weather daily exists = [" + (weather.daily != null) + "]");
+                KLog.d(TAG, "weather daily not exists = [" + StringUtils.isSpace(weather.daily) + "]");
                 if (StringUtils.isSpace(weather.daily)) {
                     requestWeatherDaily(mKey, locationId);
                 } else {
                     try {
                         WeatherDaily weatherDaily = JsonUtils.fromJson(weather.daily, WeatherDaily.class);
                         initWeatherDailyVm(weatherDaily);
+                        initSunVm(weatherDaily);
                     } catch (Exception e) {
                         e.printStackTrace();
                         requestWeatherDaily(mKey, locationId);
                     }
                 }
 
-                KLog.d(TAG, "weather hourly exists = [" + (weather.hourly != null) + "]");
+                KLog.d(TAG, "weather hourly not exists = [" + StringUtils.isSpace(weather.hourly) + "]");
                 if (StringUtils.isSpace(weather.hourly)) {
                     requestWeatherHourly(mKey, locationId);
                 } else {
@@ -291,7 +289,7 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
                     }
                 }
 
-                KLog.d(TAG, "weather air exists = [" + (weather.air != null) + "]");
+                KLog.d(TAG, "weather air not exists = [" + StringUtils.isSpace(weather.air) + "]");
                 if (StringUtils.isSpace(weather.air)) {
                     requestAirNow(mKey, locationId);
                 } else {
@@ -304,21 +302,7 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
                     }
                 }
 
-                KLog.d(TAG, "weather sun exists = [" + StringUtils.isSpace(weather.sun) + "]");
-                KLog.d(TAG, "weather sun json = [" + weather.sun + "]");
-                if (StringUtils.isSpace(weather.sun)) {
-                    requestSun(mKey, locationId);
-                } else {
-                    try {
-                        Sun sun = JsonUtils.fromJson(weather.sun, Sun.class);
-                        initSunVm(sun);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        initSunVm(null);
-                    }
-                }
-
-                KLog.d(TAG, "weather indices exists = [" + (weather.indices != null) + "]");
+                KLog.d(TAG, "weather indices not exists = [" + StringUtils.isSpace(weather.indices) + "]");
                 if (StringUtils.isSpace(weather.indices)) {
                     requestIndices(mKey, locationId);
                 } else {
@@ -330,7 +314,6 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
                         requestIndices(mKey, locationId);
                     }
                 }
-//                initWebsiteVm();
             } else {
                 requestNetWork(mKey, locationId);
             }
@@ -343,7 +326,6 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
         requestWeatherDaily(key, locationId);
         requestWeatherHourly(key, locationId);
         requestAirNow(key, locationId);
-        requestSun(key, locationId);
         requestIndices(key, locationId);
         initWebsiteVm();
     }
@@ -357,7 +339,6 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
                 NowBase nowBase = response.body();
                 if (nowBase != null && nowBase.now != null && SUCCESS.equals(nowBase.code)) {
                     initWeatherNowVm(nowBase);
-                    initSunVm(null);
                     //save db
                     Weather weather = getWeatherWithInitNowTime(locationId);
                     weather.now = JsonUtils.toJson(nowBase);
@@ -411,6 +392,7 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
                 WeatherDaily weatherDaily = response.body();
                 if (weatherDaily != null && weatherDaily.daily != null && SUCCESS.equals(weatherDaily.code)) {
                     initWeatherDailyVm(weatherDaily);
+                    initSunVm(weatherDaily);
                     //save db
                     Weather weather = getWeatherWithInitNowTime(locationId);
                     weather.daily = JsonUtils.toJson(weatherDaily);
@@ -432,10 +414,21 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mWeatherDaily = weatherDaily;
+
         WeatherDailyViewModel vm = new WeatherDailyViewModel(this, weatherDaily);
         vm.multiItemType(DAILY);
         observableList.add(DAILY, vm);
+    }
+
+    private void initSunVm(WeatherDaily weatherDaily) {
+        try {
+            observableList.remove(SUN);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        WeatherSunViewModel vm = new WeatherSunViewModel(this, weatherDaily, mWeatherNow);
+        vm.multiItemType(SUN);
+        observableList.add(SUN, vm);
     }
 
     /***************************************************WeatherHourly***************************************************/
@@ -474,7 +467,7 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
         observableList.add(HOURLY, vm);
     }
 
-    /***************************************************WeatherHourly***************************************************/
+    /***************************************************WeatherAir***************************************************/
     private void requestAirNow(String key, String location) {
         KLog.d(TAG, "locationId = [" + locationId + "]");
         HttpObserver<AirNow> httpObserver = new HttpObserver<AirNow>() {
@@ -508,45 +501,6 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
         vm.multiItemType(AIR);
         observableList.add(AIR, vm);
     }
-
-    /***************************************************WeatherHourly***************************************************/
-    private void requestSun(String key, String location) {
-        KLog.d(TAG, "locationId = [" + locationId + "]");
-        HttpObserver<Sun> httpObserver = new HttpObserver<Sun>() {
-            @Override
-            public void onSuccess(@NonNull HttpResponse<Sun> response) {
-                Sun sun = response.body();
-                if (sun != null && SUCCESS.equals(sun.code)) {
-                    initSunVm(sun);
-                    //save db
-                    Weather weather = getWeatherWithInitNowTime(locationId);
-                    weather.sun = JsonUtils.toJson(sun);
-                    model.saveWeather(weather);
-                } else {
-                    initSunVm(null);
-                }
-            }
-
-            @Override
-            public void onError(@NonNull Throwable error) {
-                initSunVm(null);
-            }
-        };
-
-        model.getSun(httpObserver, key, location, TimeUtils.getMonthDay());
-    }
-
-    private void initSunVm(Sun sun) {
-        try {
-            observableList.remove(SUN);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        WeatherSunViewModel vm = new WeatherSunViewModel(this, mWeatherNow, mWeatherDaily, sun);
-        vm.multiItemType(SUN);
-        observableList.add(SUN, vm);
-    }
-
 
     /***************************************************Indices***************************************************/
     private void requestIndices(String key, String location) {
@@ -611,6 +565,7 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
         } else {
             skyType = WeatherUitls.convertWeatherType(weatherCode);
         }
+        KLog.d(TAG, "weatherCode = [" + weatherCode + "], sunset = [" + sunset + "], sunrise = [" + sunrise + "], skyType = [" + skyType + "]");
         uiChange.skyTypeEvent.setValue(skyType);
     }
 

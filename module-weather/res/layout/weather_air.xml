@@ -86,8 +86,20 @@
                     app:leftTextSize="14dp"
                     app:rightTextColor="@color/text_primary"
                     app:rightTextSize="14dp"
-                    app:showBottom="false"
                     binding:summary="@{viewModel.airNowEntity.no2}" />
+
+                <com.journeyOS.widget.weather.WeatherTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    app:bottomColor="@color/divider_secondary"
+                    app:left="@string/weather_air_co"
+                    app:leftTextColor="@color/text_secondary"
+                    app:leftTextSize="14dp"
+                    app:rightTextColor="@color/text_primary"
+                    app:rightTextSize="14dp"
+                    app:showBottom="false"
+                    binding:summary="@{viewModel.airNowEntity.co}" />
+
             </LinearLayout>
         </LinearLayout>
 

@@ -9,16 +9,23 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.journeyOS.core.data.DataRepository;
+import com.journeyOS.liteframework.utils.KLog;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class AppViewModelFactory extends ViewModelProvider.NewInstanceFactory {
+    private static final String TAG = AppViewModelFactory.class.getSimpleName();
+
     @SuppressLint("StaticFieldLeak")
     private static volatile AppViewModelFactory INSTANCE;
+
     private final Application mApplication;
     private final DataRepository mRepository;
+    private final List<String> mClassNameList = new ArrayList<>();
 
     public static AppViewModelFactory getInstance(Application application) {
         if (INSTANCE == null) {
@@ -41,25 +48,25 @@ public class AppViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         this.mRepository = repository;
     }
 
+    public <T> void setModel(Class<T> model) {
+        String className = model.getName();
+        KLog.d(TAG, "className = [" + className + "]");
+        if (!mClassNameList.contains(className)) {
+            mClassNameList.add(className);
+        }
+    }
+
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         try {
-            Class<?> settingsViewModel = Class.forName("com.journeyOS.setting.ui.viewmodel.SettingsViewModel");
-            if (modelClass.isAssignableFrom(settingsViewModel)) {
-                return (T) reflection(settingsViewModel);
+            for (String className : mClassNameList) {
+                KLog.d(TAG, "className = [" + className + "], modelClass = [" + modelClass.getName() + "]");
+                Class<?> cls = Class.forName(className);
+                if (modelClass.isAssignableFrom(cls)) {
+                    return (T) reflection(cls);
+                }
             }
-
-            Class<?> weatherViewModel = Class.forName("com.journeyOS.weather.ui.viewmodel.WeatherViewModel");
-            if (modelClass.isAssignableFrom(weatherViewModel)) {
-                return (T) reflection(weatherViewModel);
-            }
-
-            Class<?> cityViewModel = Class.forName("com.journeyOS.city.ui.viewmodel.CityViewModel");
-            if (modelClass.isAssignableFrom(cityViewModel)) {
-                return (T) reflection(cityViewModel);
-            }
-
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -70,7 +77,6 @@ public class AppViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
     private Object reflection(Class<?> cls) {
         try {
-
             Class<?>[] param_types = new Class<?>[2];
             Object[] arguments = new Object[2];
 

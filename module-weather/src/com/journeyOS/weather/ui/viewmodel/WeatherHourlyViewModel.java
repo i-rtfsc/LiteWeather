@@ -14,7 +14,6 @@ import java.util.List;
 public class WeatherHourlyViewModel extends MultiItemViewModel<WeatherViewModel> {
     public ObservableField<List<HourlyForecastView.HourlyData>> hourlyDataList = new ObservableField<>();
 
-
     public WeatherHourlyViewModel(@NonNull WeatherViewModel viewModel, WeatherHourly weatherHourly) {
         super(viewModel);
         parseWeatherHourly(weatherHourly);

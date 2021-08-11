@@ -34,15 +34,16 @@
             android:background="?selectableItemBackground"
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/common_dimen_big"
+            android:paddingRight="@dimen/common_dimen_big"
             android:text="@{viewModel.city.cityName}"
             android:textColor="@color/city_text_primary"
             android:textSize="@dimen/text_size_medium"
-            binding:onClickCommand="@{viewModel.cityOnClickCommand}" />
+            binding:onClickCommand="@{viewModel.onCityClickCommand}" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:layout_marginLeft="@dimen/common_dimen_big"
+            android:layout_marginStart="@dimen/common_dimen_big"
             android:background="@color/city_divider"
             android:visibility="gone" />
 

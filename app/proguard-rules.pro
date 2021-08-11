@@ -38,6 +38,9 @@
 #-keep class com.journeyOS.setting.SettingModuleInit { *; }
 #-keep class com.journeyOS.city.CityModuleInit { *; }
 
+#自定义控件
+-keep class com.journeyOS.widget.** { *; }
+
 #-------------------------------------------LiteFramework混淆规则----------------------------------------------
 #1.实体类
 -keep class com.journeyOS.liteframework.http.BaseResponse { *; }
@@ -48,10 +51,7 @@
 -keep public class * extends com.journeyOS.liteframework.binding.command.BindingCommand{ *; }
 -keep public class * extends com.journeyOS.liteframework.binding.command.ResponseCommand{ *; }
 
-#3.自定义控件
--keep class com.journeyOS.widget.** { *; }
-
-#4.第三方包
+#3.第三方包
 #support
 -keep class android.support.** { *; }
 -keep interface android.support.** { *; }

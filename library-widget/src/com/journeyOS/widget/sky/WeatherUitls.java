@@ -27,17 +27,22 @@ public class WeatherUitls {
         return convertWeatherType(weatherCode, false);
     }
 
+    //https://dev.qweather.com/docs/start/icons/
+    //图标代码和天气对照表
     public static SkyType convertWeatherType(String weatherCode, boolean isNight) {
         try {
             final int w = Integer.valueOf(weatherCode);
             switch (w) {
                 case 100:
+                case 150:
                     return isNight ? SkyType.CLEAR_N : SkyType.CLEAR_D;
                 case 101:// 多云
                 case 102:// 少云
                 case 103:// 晴间多云
+                case 153:
                     return isNight ? SkyType.CLOUDY_N : SkyType.CLOUDY_D;
                 case 104:// 阴
+                case 154:
                     return isNight ? SkyType.OVERCAST_N : SkyType.OVERCAST_D;
                 // 200 - 213是风
                 case 200:
@@ -69,22 +74,43 @@ public class WeatherUitls {
                 case 311:// 大暴雨 Heavy Storm
                 case 312:// 特大暴雨 Severe Storm
                 case 313:// 冻雨 Freezing Rain
+                case 314://	小到中雨	Light to moderate rain
+                case 315://	中到大雨	Moderate to heavy rain
+                case 316:// 大到暴雨	Heavy rain to storm
+                case 317://	暴雨到大暴雨	Storm to heavy storm
+                case 318://	大暴雨到特大暴雨	Heavy to severe storm
+                case 399://	雨	Rain
+                case 350://	阵雨	Shower Rain
+                case 351://	强阵雨
                     return isNight ? SkyType.RAIN_N : SkyType.RAIN_D;
                 case 400:// 小雪 Light Snow
                 case 401:// 中雪 Moderate Snow
                 case 402:// 大雪 Heavy Snow
                 case 403:// 暴雪 Snowstorm
                 case 407:// 阵雪 Snow Flurry
+                case 408://	小到中雪	Light to moderate snow
+                case 409://	中到大雪	Moderate to heavy snow
+                case 410://	大到暴雪	Heavy snow to snowstorm
+                case 499://	雪	Snow
+                case 457://	阵雪
                     return isNight ? SkyType.SNOW_N : SkyType.SNOW_D;
                 case 404:// 雨夹雪 Sleet
                 case 405:// 雨雪天气 Rain And Snow
                 case 406:// 阵雨夹雪 Shower Snow
+                case 456://	阵雨夹雪	Shower Snow
                     return isNight ? SkyType.RAIN_SNOW_N : SkyType.RAIN_SNOW_D;
                 case 500:// 薄雾
                 case 501:// 雾
+                case 509://	浓雾
+                case 510://	强浓雾
+                case 514://	大雾
+                case 515://	特强浓雾
                     return isNight ? SkyType.FOG_N : SkyType.FOG_D;
                 case 502:// 霾
                 case 504:// 浮尘
+                case 511://	中度霾
+                case 512://	重度霾
+                case 513://	严重霾
                     return isNight ? SkyType.HAZE_N : SkyType.HAZE_D;
                 case 503:// 扬沙
                 case 506:// 火山灰
