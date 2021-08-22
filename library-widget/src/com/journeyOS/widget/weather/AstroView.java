@@ -312,25 +312,30 @@ public class AstroView extends View {
         boolean result = false;
         final long aDayInMillis = 1000 * 60 * 60 * 24;
         final long currentTimeMillis = System.currentTimeMillis();
+
         Time now = new Time();
         now.set(currentTimeMillis);
+
         Time startTime = new Time();
         startTime.set(currentTimeMillis);
         startTime.hour = beginHour;
         startTime.minute = beginMin;
+
         Time endTime = new Time();
         endTime.set(currentTimeMillis);
         endTime.hour = endHour;
         endTime.minute = endMin;
+
         /**跨天的特殊情况(比如23:00-2:00)*/
         if (!startTime.before(endTime)) {
             startTime.set(startTime.toMillis(true) - aDayInMillis);
             result = !now.before(startTime) && !now.after(endTime); // startTime <= now <= endTime
+            diff = 24 * 60 * 60 - (beginHour * 60 * 60 + beginMin * 60) + endHour * 60 * 60 + endMin * 60;
+
             Time startTimeInThisDay = new Time();
             startTimeInThisDay.set(startTime.toMillis(true) + aDayInMillis);
             if (!now.before(startTimeInThisDay)) {
                 result = true;
-                diff = 24 * 60 * 60 - (beginHour * 60 * 60 + beginMin * 60) + endHour * 60 * 60 + endMin * 60;
             }
         } else {
             /**普通情况(比如5:00-10:00)*/
