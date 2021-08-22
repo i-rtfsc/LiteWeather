@@ -1,7 +1,6 @@
 ext {
     timeList = buildTime()
-//    year = timeList[0] - getFirstYear()
-    year = timeList[0] - 2018
+    year = timeList[0] - getFirstYear()
     month = timeList[1]
     birthday = timeList[0] + "/" + timeList[1] + "/1"
     commitCount = getCommitCount(birthday)
@@ -88,9 +87,14 @@ ext {
 
 //https://stackoverflow.com/questions/17097263/automatic-versioning-of-android-build-using-git-describe-with-gradle
 def static getFirstYear() {
-    def year = "git log --reverse --format=\"format:%ci\" | sed -n 1p | awk '{print \$1}'".execute().toInteger()
+    def mainCountCmd = ["git", "log", "--reverse", "--pretty=format:%ci"]
+    def time = mainCountCmd.execute().pipeTo("sed -n 1p".execute()).text
+    println "$time"
+    def year = time.split(" ")[0].split("-")[0] as Integer
+    println "$year"
     return year
 }
+
 /**
  * 组织版本号（VersionCode）
  * @param year 大版本
