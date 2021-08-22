@@ -51,6 +51,7 @@ public class SettingsFragment extends BaseFragment<FragmentSettingsBinding, Sett
         super.initData();
         viewModel.initData();
         binding.expandableWeatherPort.collapse(false);
+        binding.expandableWeatherRefresh.collapse(false);
         RxBus.getDefault().post(SkyType.RAIN_SNOW_D);
     }
 
@@ -97,6 +98,30 @@ public class SettingsFragment extends BaseFragment<FragmentSettingsBinding, Sett
                     binding.expandableWeatherPort.expand();
                 }
                 viewModel.weatherKey.set(StringUtils.hideId(key));
+            }
+        });
+
+        //监听时间点击事情
+        viewModel.uiChange.timeClick.observe(this, new Observer() {
+            @Override
+            public void onChanged(@Nullable Object o) {
+                if (binding.expandableWeatherRefresh.isExpanded()) {
+                    binding.expandableWeatherRefresh.collapse();
+                } else {
+                    binding.expandableWeatherRefresh.expand();
+                }
+            }
+        });
+        //监听选中的时间
+        viewModel.uiChange.weatherTimeClick.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String key) {
+                if (binding.expandableWeatherRefresh.isExpanded()) {
+                    binding.expandableWeatherRefresh.collapse();
+                } else {
+                    binding.expandableWeatherRefresh.expand();
+                }
+                viewModel.weatherTime.set(String.format(viewModel.getApplication().getResources().getString(R.string.weather_time_diff), key));
             }
         });
     }

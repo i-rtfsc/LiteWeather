@@ -5,6 +5,10 @@
     <string name="weather_key">天气帐号</string>
     <string name="weather_key_select">帐号选择</string>
 
+    <string name="weather_time">更新间隔</string>
+    <string name="weather_time_select">时间选择</string>
+    <string name="weather_time_diff">每%s小时</string>
+
     <string name="version">版本</string>
     <string name="email">邮箱</string>
     <string name="email_account">anqi.huang@outlook.com</string>
