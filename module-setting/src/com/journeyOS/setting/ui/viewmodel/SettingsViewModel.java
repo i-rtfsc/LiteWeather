@@ -37,15 +37,18 @@ public class SettingsViewModel extends BaseViewModel<DataRepository> {
     public ObservableField<String> adm1Event = new ObservableField<>();
     public ObservableField<String> cityNameEvent = new ObservableField<>();
     public ObservableField<String> weatherKey = new ObservableField<>();
+    public ObservableField<String> weatherTime = new ObservableField<>();
     public ObservableField<Boolean> nightSky = new ObservableField<>(false);
 
     //封装一个界面发生改变的观察者
     public UIChangeObservable uiChange = new UIChangeObservable();
 
     public class UIChangeObservable {
-        //下拉刷新完成
         public SingleLiveEvent keyClick = new SingleLiveEvent<>();
         public SingleLiveEvent<String> weatherKeyClick = new SingleLiveEvent<>();
+
+        public SingleLiveEvent timeClick = new SingleLiveEvent<>();
+        public SingleLiveEvent<String> weatherTimeClick = new SingleLiveEvent<>();
     }
 
     public SettingsViewModel(@NonNull Application application, DataRepository repository) {
@@ -60,9 +63,12 @@ public class SettingsViewModel extends BaseViewModel<DataRepository> {
 
     public void initData() {
         weatherKey.set(StringUtils.hideId(model.getString(DBConfigs.Settings.WEATHER_KEY, DBConfigs.Settings.WEATHER_KEY_DEFAULT)));
+        weatherTime.set(String.format(getApplication().getResources().getString(R.string.weather_time_diff),
+                String.valueOf(model.getInt(DBConfigs.Settings.WEATHER_TIME, DBConfigs.Settings.WEATHER_TIME_DEFAULT))));
         nightSky.set(model.getBoolean(DBConfigs.Settings.NIGHT_SKY, DBConfigs.Settings.NIGHT_SKY_DEFAULT));
         updateCity();
         initWeatherKey();
+        initWeatherTime();
     }
 
     private void updateCity() {
@@ -89,7 +95,7 @@ public class SettingsViewModel extends BaseViewModel<DataRepository> {
     private void initWeatherKey() {
         try {
             //清除列表
-            observableList.clear();
+            weatherKeyObservableList.clear();
         } catch (Exception e) {
             KLog.d(TAG, "clear observable list error = " + e);
         }
@@ -97,7 +103,7 @@ public class SettingsViewModel extends BaseViewModel<DataRepository> {
         for (String key : DBConfigs.Settings.getWeatherKeys()) {
             try {
                 WeatherKeyViewModel vm = new WeatherKeyViewModel(this, key);
-                observableList.add(vm);
+                weatherKeyObservableList.add(vm);
             } catch (Exception e) {
                 KLog.d(TAG, "add observable list error = " + e);
             }
@@ -106,6 +112,28 @@ public class SettingsViewModel extends BaseViewModel<DataRepository> {
 
     public void saveWeatherKey(String key) {
         model.put(DBConfigs.Settings.WEATHER_KEY, key);
+    }
+
+    private void initWeatherTime() {
+        try {
+            //清除列表
+            weatherTimeObservableList.clear();
+        } catch (Exception e) {
+            KLog.d(TAG, "clear observable list error = " + e);
+        }
+
+        for (int time : DBConfigs.Settings.getWeatherTimes()) {
+            try {
+                WeatherTimeViewModel vm = new WeatherTimeViewModel(this, time);
+                weatherTimeObservableList.add(vm);
+            } catch (Exception e) {
+                KLog.d(TAG, "add observable list error = " + e);
+            }
+        }
+    }
+
+    public void saveWeatherTime(int time) {
+        model.put(DBConfigs.Settings.WEATHER_TIME, time);
     }
 
     public BindingCommand versionOnClickCommand = new BindingCommand(new BindingAction() {
@@ -123,7 +151,7 @@ public class SettingsViewModel extends BaseViewModel<DataRepository> {
     });
 
     //按钮点击事件
-    public BindingCommand cityOnClickCommand = new BindingCommand(new BindingAction() {
+    public BindingCommand onCityClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
             KLog.d(TAG, "click city item");
@@ -139,11 +167,20 @@ public class SettingsViewModel extends BaseViewModel<DataRepository> {
         }
     });
 
-    public BindingCommand keyOnClickCommand = new BindingCommand(new BindingAction() {
+    public BindingCommand onKeyClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
             KLog.d(TAG, "click key item");
             uiChange.keyClick.call();
+        }
+    });
+
+
+    public BindingCommand onTimeClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            KLog.d(TAG, "click time item");
+            uiChange.timeClick.call();
         }
     });
 
@@ -158,9 +195,14 @@ public class SettingsViewModel extends BaseViewModel<DataRepository> {
     });
 
     //给RecyclerView添加ObservableList
-    public ObservableList<WeatherKeyViewModel> observableList = new ObservableArrayList<>();
+    public ObservableList<WeatherKeyViewModel> weatherKeyObservableList = new ObservableArrayList<>();
     //给RecyclerView添加ItemBinding
-    public ItemBinding<WeatherKeyViewModel> itemBinding = ItemBinding.of(BR.viewModel, R.layout.item_weather_key);
+    public ItemBinding<WeatherKeyViewModel> weatherKeyItemBinding = ItemBinding.of(BR.viewModel, R.layout.item_weather_key);
+
+    //给RecyclerView添加ObservableList
+    public ObservableList<WeatherTimeViewModel> weatherTimeObservableList = new ObservableArrayList<>();
+    //给RecyclerView添加ItemBinding
+    public ItemBinding<WeatherTimeViewModel> weatherTimeItemBinding = ItemBinding.of(BR.viewModel, R.layout.item_weather_time);
 
     /**
      * 订阅城市变化

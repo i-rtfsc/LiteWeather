@@ -2,6 +2,7 @@ package com.journeyOS.data.source.local.base;
 
 import com.journeyOS.jni.JniHelper;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -93,17 +94,31 @@ public class DBConfigs {
         public static final String WEATHER_KEY = "key";
         public static final String WEATHER_KEY_DEFAULT = "8aeec77017724b518a5f0ba5d1888820";
 
+        public static final String WEATHER_TIME = "time";
+        public static final int WEATHER_TIME_DEFAULT = 1;
+
         public static final String NIGHT_SKY = "night_sky";
         public static final boolean NIGHT_SKY_DEFAULT = false;
 
         public static List<String> getWeatherKeys() {
             //最初的例子是用buildConfigField
-            //但有部分同学反应buildConfigField可以做到把重要信息不上传到git仓里
-            //但编译出APK之后可以通过反编译看的信息
+            //虽然buildConfigField可以做到把重要信息不上传到git仓里
+            //但有的同学反应编译出APK之后可以通过反编译看的信息
 
-            //正好有部分同学想知道JNI怎么用
+            //正好有的同学想知道JNI怎么用
             //所以把key放到C/C++
             return Arrays.asList(JniHelper.getWeatherKeys());
+        }
+
+        public static List<Integer> getWeatherTimes() {
+            List<Integer> times = new ArrayList<>();
+            times.add(1);
+            times.add(3);
+            times.add(5);
+            times.add(7);
+            times.add(9);
+
+            return times;
         }
 
     }

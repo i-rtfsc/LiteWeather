@@ -9,14 +9,14 @@ import androidx.databinding.ObservableList;
 
 import com.journeyOS.base.utils.TimeUtils;
 import com.journeyOS.data.DataRepository;
-import com.journeyOS.data.source.local.base.DBConfigs;
-import com.journeyOS.data.source.local.city.City;
-import com.journeyOS.data.source.local.weather.Weather;
 import com.journeyOS.data.entity.AirNow;
 import com.journeyOS.data.entity.Indices;
 import com.journeyOS.data.entity.NowBase;
 import com.journeyOS.data.entity.WeatherDaily;
 import com.journeyOS.data.entity.WeatherHourly;
+import com.journeyOS.data.source.local.base.DBConfigs;
+import com.journeyOS.data.source.local.city.City;
+import com.journeyOS.data.source.local.weather.Weather;
 import com.journeyOS.liteframework.base.BaseViewModel;
 import com.journeyOS.liteframework.base.MultiItemViewModel;
 import com.journeyOS.liteframework.binding.command.BindingAction;
@@ -179,12 +179,10 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
 
                             @Override
                             public void onNext(@NonNull City city) {
-                                if (city != null && city.locationId != null) {
-                                    mCity = city;
-                                    model.put(DBConfigs.Settings.LOCATION_ID, JsonUtils.toJson(city));
-                                    if (!locationId.equals(city.locationId)) {
-                                        needed[0] = true;
-                                    }
+                                mCity = city;
+                                model.put(DBConfigs.Settings.LOCATION_ID, JsonUtils.toJson(city));
+                                if (!locationId.equals(city.locationId)) {
+                                    needed[0] = true;
                                 }
                             }
 
@@ -203,8 +201,7 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
             }
         }
 
-        if (mCity != null && mCity.locationId != null
-                && !StringUtils.isSpace(mCity.locationId)) {
+        if (mCity != null && !StringUtils.isSpace(mCity.locationId)) {
             locationId = mCity.locationId;
         }
 
@@ -248,7 +245,7 @@ public class WeatherViewModel extends BaseViewModel<DataRepository> {
             String endTime = Long.toString(System.currentTimeMillis());
             long diffHours = TimeUtils.getDiffHours(startTime, endTime);
             KLog.d(TAG, "startTime = [" + startTime + "], endTime = [" + endTime + "], diffHours = [" + diffHours + "]");
-            if (diffHours < 4) {
+            if (diffHours <= model.getInt(DBConfigs.Settings.WEATHER_TIME, DBConfigs.Settings.WEATHER_TIME_DEFAULT)) {
                 KLog.d(TAG, "weather now not exists = [" + StringUtils.isSpace(weather.now) + "]");
                 if (StringUtils.isSpace(weather.now)) {
                     requestWeatherNow(mKey, locationId);

@@ -34,12 +34,12 @@
                 app:settingTitleTextColor="@color/text_primary"
                 app:showRightSummary="true"
                 app:showSummary="true"
-                binding:onClickCommand="@{viewModel.cityOnClickCommand}"
+                binding:onClickCommand="@{viewModel.onCityClickCommand}"
                 binding:summary="@{viewModel.cityNameEvent}"
                 binding:title="@{viewModel.adm1Event}" />
 
             <com.journeyOS.widget.setting.SettingView
-                style="@style/theme_bottom_layout"
+                style="@style/theme_mid_layout"
                 app:settingIcon="@drawable/svg_account"
                 app:settingRightSummary="@string/weather_key_select"
                 app:settingRightSummaryTextColor="@color/text_primary_dark"
@@ -47,7 +47,7 @@
                 app:settingTitle="@string/weather_key"
                 app:settingTitleTextColor="@color/text_primary"
                 app:showSummary="true"
-                binding:onClickCommand="@{viewModel.keyOnClickCommand}"
+                binding:onClickCommand="@{viewModel.onKeyClickCommand}"
                 binding:summary="@{viewModel.weatherKey}" />
 
             <net.cachapa.expandablelayout.ExpandableLayout
@@ -61,8 +61,36 @@
                     android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="246dp"
-                    binding:itemBinding="@{viewModel.itemBinding}"
-                    binding:items="@{viewModel.observableList}"
+                    binding:itemBinding="@{viewModel.weatherKeyItemBinding}"
+                    binding:items="@{viewModel.weatherKeyObservableList}"
+                    binding:layoutManager="@{LayoutManagers.linear()}" />
+
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+            <com.journeyOS.widget.setting.SettingView
+                style="@style/theme_bottom_layout"
+                app:settingIcon="@drawable/svg_time"
+                app:settingRightSummary="@string/weather_time_select"
+                app:settingRightSummaryTextColor="@color/text_primary_dark"
+                app:settingSummaryTextColor="@color/text_secondary"
+                app:settingTitle="@string/weather_time"
+                app:settingTitleTextColor="@color/text_primary"
+                app:showSummary="true"
+                binding:onClickCommand="@{viewModel.onTimeClickCommand}"
+                binding:summary="@{viewModel.weatherTime}" />
+
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable_weather_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:el_duration="360"
+                app:el_expanded="true">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="246dp"
+                    binding:itemBinding="@{viewModel.weatherTimeItemBinding}"
+                    binding:items="@{viewModel.weatherTimeObservableList}"
                     binding:layoutManager="@{LayoutManagers.linear()}" />
 
             </net.cachapa.expandablelayout.ExpandableLayout>
@@ -119,7 +147,6 @@
                 binding:onClickCommand="@{viewModel.onNightSkyCheckedChangeCommand}" />
 
         </LinearLayout>
-
 
     </LinearLayout>
 
