@@ -39,6 +39,7 @@ public class SettingsViewModel extends BaseViewModel<DataRepository> {
     public ObservableField<String> weatherKey = new ObservableField<>();
     public ObservableField<String> weatherTime = new ObservableField<>();
     public ObservableField<Boolean> nightSky = new ObservableField<>(false);
+    public ObservableField<String> weatherSky = new ObservableField<>();
 
     //封装一个界面发生改变的观察者
     public UIChangeObservable uiChange = new UIChangeObservable();
@@ -49,6 +50,8 @@ public class SettingsViewModel extends BaseViewModel<DataRepository> {
 
         public SingleLiveEvent timeClick = new SingleLiveEvent<>();
         public SingleLiveEvent<String> weatherTimeClick = new SingleLiveEvent<>();
+
+        public SingleLiveEvent weatherSkyClick = new SingleLiveEvent<>();
     }
 
     public SettingsViewModel(@NonNull Application application, DataRepository repository) {
@@ -136,6 +139,14 @@ public class SettingsViewModel extends BaseViewModel<DataRepository> {
         model.put(DBConfigs.Settings.WEATHER_TIME, time);
     }
 
+    public void saveSettingSky(int sky) {
+        model.put(DBConfigs.Settings.WEATHER_SKY, sky);
+    }
+
+    public int getSettingSky() {
+        return model.getInt(DBConfigs.Settings.WEATHER_SKY, DBConfigs.Settings.WEATHER_SKY_DEFAULT);
+    }
+
     public BindingCommand versionOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
@@ -191,6 +202,14 @@ public class SettingsViewModel extends BaseViewModel<DataRepository> {
             KLog.d(TAG, "click night sky item = " + isChecked);
             nightSky.set(isChecked);
             model.put(DBConfigs.Settings.NIGHT_SKY, isChecked);
+        }
+    });
+
+    public BindingCommand onWeatherSkyClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            KLog.d(TAG, "click time item");
+            uiChange.weatherSkyClick.call();
         }
     });
 

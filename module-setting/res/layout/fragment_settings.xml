@@ -135,7 +135,7 @@
         <LinearLayout style="@style/theme_wrap_layout">
 
             <com.journeyOS.widget.setting.SettingSwitch
-                style="@style/theme_single_layout"
+                style="@style/theme_top_layout"
                 app:settingIcon="@drawable/svg_night"
                 app:settingRightSummaryTextColor="@color/text_primary_dark"
                 app:settingSummary="@string/night_sky_summary"
@@ -145,6 +145,18 @@
                 app:theme="@style/theme_check_box"
                 binding:check="@{viewModel.nightSky}"
                 binding:onClickCommand="@{viewModel.onNightSkyCheckedChangeCommand}" />
+
+            <com.journeyOS.widget.setting.SettingView
+                style="@style/theme_bottom_layout"
+                app:settingIcon="@drawable/svg_airplane"
+                app:settingRightSummary="@string/weather_sky_select"
+                app:settingRightSummaryTextColor="@color/text_primary_dark"
+                app:settingSummaryTextColor="@color/text_secondary"
+                app:settingTitle="@string/weather_sky"
+                app:settingTitleTextColor="@color/text_primary"
+                app:showSummary="true"
+                binding:onClickCommand="@{viewModel.onWeatherSkyClickCommand}"
+                binding:summary="@{viewModel.weatherSky}" />
 
         </LinearLayout>
 

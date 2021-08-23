@@ -97,6 +97,9 @@ public class DBConfigs {
         public static final String WEATHER_TIME = "time";
         public static final int WEATHER_TIME_DEFAULT = 1;
 
+        public static final String WEATHER_SKY = "sky";
+        public static final int WEATHER_SKY_DEFAULT = 19;
+
         public static final String NIGHT_SKY = "night_sky";
         public static final boolean NIGHT_SKY_DEFAULT = false;
 

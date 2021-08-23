@@ -17,4 +17,8 @@
 
     <string name="night_sky">夜晚天空</string>
     <string name="night_sky_summary">是否使用夜晚的天空</string>
+
+    <string name="weather_sky">设置页天空</string>
+    <string name="weather_sky_select">设置页天空选择</string>
+
 </resources>
