@@ -1,0 +1,27 @@
+<resources>
+    <string-array name="weather_drawer_type">
+        <item>默认</item>
+        <item>晴（白天）</item>
+        <item>晴（夜间）</item>
+        <item>雨（白天）</item>
+        <item>雨（夜间）</item>
+        <item>雪（白天）</item>
+        <item>雪（夜间）</item>
+        <item>多云（白天）</item>
+        <item>多云（夜间）</item>
+        <item>阴（白天）</item>
+        <item>阴（夜间）</item>
+        <item>雾（白天）</item>
+        <item>雾（夜间）</item>
+        <item>霾（白天）</item>
+        <item>霾（夜间）</item>
+        <item>沙尘（白天）</item>
+        <item>沙尘（夜间）</item>
+        <item>风（白天）</item>
+        <item>风（夜间）</item>
+        <item>雨夹雪（白天）</item>
+        <item>雨夹雪（夜间）</item>
+        <item>未知（白天）</item>
+        <item>未知（夜间）</item>
+    </string-array>
+</resources>

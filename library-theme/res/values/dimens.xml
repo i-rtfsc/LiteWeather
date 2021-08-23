@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="background_corners">10dp</dimen>
-
+    <dimen name="dialog_margin">8dp</dimen>
 
     <dimen name="text_size_small">12sp</dimen>
     <dimen name="divider_size">0.5dp</dimen>

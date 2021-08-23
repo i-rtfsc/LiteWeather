@@ -27,6 +27,8 @@
     <color name="select_background">#661E90FF</color>
     <color name="unselect_background">#1A1E90FF</color>
 
+    <color name="dialog_background">#F23F51B5</color>
+
     <color name="city_background">#F2303F9F</color>
     <color name="city_text_primary">#CCFFFFFF</color>
     <color name="city_text_secondary">#80FFFFFF</color>
