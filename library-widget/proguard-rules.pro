@@ -24,3 +24,5 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+#自定义控件
+-keep class com.journeyOS.widget.** { *; }
