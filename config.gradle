@@ -36,7 +36,7 @@ ext {
 
     /*3方核心库版本*/
     dependencies = [
-            "lite-framework"                       : "com.github.journeyOS:LiteFramework:2.3.0",
+            "lite-framework"                       : "com.github.journeyOS:LiteFramework:2.3.2",
             //Google AAC
             "lifecycle-extensions"                 : "androidx.lifecycle:lifecycle-extensions:2.0.0",
             "lifecycle-compiler"                   : "androidx.lifecycle:lifecycle-compiler:2.0.0",

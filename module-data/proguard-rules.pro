@@ -24,3 +24,8 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+#实体类不参与混淆
+-keep class com.journeyOS.data.entity.** { *; }
+
+-keep class com.journeyOS.data.source.local.city.City { *; }
+-keep class com.journeyOS.data.source.local.weather.Weather { *; }

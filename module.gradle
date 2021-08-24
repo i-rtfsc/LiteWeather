@@ -54,11 +54,14 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            consumerProguardFiles 'proguard-rules.pro'
         }
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //consumerProguardFiles 语句会将混淆规则和资源代码一同打包到 aar 包中，这样做的好处在于：在项目编译时会将 aar 包中的混淆规则合并到主模块中。
+            consumerProguardFiles 'proguard-rules.pro'
         }
     }
 

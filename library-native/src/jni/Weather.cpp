@@ -58,6 +58,7 @@ jobject jni_native_get_weather_keys(JNIEnv *env, jclass thiz) {
     jmethodID list_add = env->GetMethodID(list_jcs, "add",
                                           "(Ljava/lang/Object;)Z");
     //获取WeatherKey类
+    //WeatherKey不参与混淆，否则JNI代码找不到造成crash
     jclass weather_cls = env->FindClass("com/journeyOS/jni/WeatherKey");
     //获取WeatherKey的构造函数
     jmethodID weather_init = env->GetMethodID(weather_cls, "<init>",

@@ -1,5 +1,8 @@
 package com.journeyOS.jni;
 
+/*
+ * 不参与混淆，否则JNI代码找不到造成crash
+ */
 public class WeatherKey {
     private String owner;
     private String key;
