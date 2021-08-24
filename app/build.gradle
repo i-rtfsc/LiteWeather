@@ -68,14 +68,21 @@ android {
     //统一资源前缀，规范资源引用
     //https://www.jianshu.com/p/e498a4f8bfa7
     //resourcePrefix "app_"
-    dataBinding {
-        enabled true
+
+    buildFeatures {
+        dataBinding = true
+        // for view binding :
+        // viewBinding = true
     }
 
     applicationVariants.all { variant ->
         if (variant.buildType.name == 'release') {
             variant.outputs.all {
                 outputFileName = new File("./../../../../../build/app_release/", "LiteWeather.apk")
+            }
+        } else if (variant.buildType.name == 'debug') {
+            variant.outputs.all {
+                outputFileName = new File("./../../../../../build/app_debug/", "LiteWeather.apk")
             }
         }
     }

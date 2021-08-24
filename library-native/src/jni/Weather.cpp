@@ -42,4 +42,58 @@ jobjectArray jni_native_get_weather_key(JNIEnv *env, jclass thiz) {
     return (ret);
 }
 
+jobject jni_native_get_weather_keys(JNIEnv *env, jclass thiz) {
+    //获取ArrayList类引用
+    jclass list_jcs = env->FindClass("java/util/ArrayList");
+    if (list_jcs == nullptr) {
+        LOGE("ArrayList no find!");
+        return nullptr;
+    }
+
+    //获取ArrayList构造函数id
+    jmethodID list_init = env->GetMethodID(list_jcs, "<init>", "()V");
+    //创建一个ArrayList对象
+    jobject list_obj = env->NewObject(list_jcs, list_init, "");
+    //获取ArrayList对象的add()的methodID
+    jmethodID list_add = env->GetMethodID(list_jcs, "add",
+                                          "(Ljava/lang/Object;)Z");
+    //获取WeatherKey类
+    jclass weather_cls = env->FindClass("com/journeyOS/jni/WeatherKey");
+    //获取WeatherKey的构造函数
+    jmethodID weather_init = env->GetMethodID(weather_cls, "<init>",
+                                              "(Ljava/lang/String;Ljava/lang/String;)V");
+
+    const char *owner[5] = {"Solo",
+                            "unknown",
+                            "unknown",
+                            "unknown",
+                            "unknown"};
+    const char *keys[5] = {"8aeec77017724b518a5f0ba5d1888820",
+                           "7e0c26e74f384de59efb7a86565a1c0f",
+                           "def9a507328e4cd395d983fe2589586e",
+                           "537664b7e2124b3c845bc0b51278d4af",
+                           "bc0418b57b2d4918819d3974ac1285d9"};
+
+    for (int i = 0; i < 5; i++) {
+        jobject weather_obj = env->NewObject(weather_cls, weather_init,
+                                             env->NewStringUTF(owner[i]),
+                                             env->NewStringUTF(keys[i]));
+        env->CallBooleanMethod(list_obj, list_add, weather_obj);
+    }
+
+    return list_obj;
+}
+
+//jobject jni_native_get_weather_key(JNIEnv *env, jclass thiz) {
+//    //获取WeatherKey类
+//    jclass weather_cls = env->FindClass("com/journeyOS/jni/WeatherKey");
+//    //获取WeatherKey的构造函数
+//    jmethodID weather_init = env->GetMethodID(weather_cls, "<init>",
+//                                              "(Ljava/lang/String;Ljava/lang/String;)V");
+//
+//    jobject weather_obj = env->NewObject(weather_cls, weather_init,
+//                                         env->NewStringUTF("Solo"),
+//                                         env->NewStringUTF("8aeec77017724b518a5f0ba5d1888820"));
+//    return weather_obj;
+//}
 

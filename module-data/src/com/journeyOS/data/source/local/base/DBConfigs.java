@@ -1,9 +1,9 @@
 package com.journeyOS.data.source.local.base;
 
 import com.journeyOS.jni.JniHelper;
+import com.journeyOS.jni.WeatherKey;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class DBConfigs {
@@ -110,7 +110,15 @@ public class DBConfigs {
 
             //正好有的同学想知道JNI怎么用
             //所以把key放到C/C++
-            return Arrays.asList(JniHelper.getWeatherKeys());
+//            return Arrays.asList(JniHelper.getWeatherKeys());
+
+            //jni返回list<object>的demo
+            ArrayList<String> keys = new ArrayList<>();
+            for (WeatherKey weather : JniHelper.getNativeWeatherKeys()) {
+                keys.add(weather.getKey());
+            }
+
+            return keys;
         }
 
         public static List<Integer> getWeatherTimes() {
