@@ -18,21 +18,23 @@
 
 #include "JniLog.h"
 
+#define KEY_NUM 5
 
 jobjectArray jni_native_get_weather_key(JNIEnv *env, jclass thiz) {
     jobjectArray ret;
 
-    const char *keys[5] = {"8aeec77017724b518a5f0ba5d1888820",
-                           "7e0c26e74f384de59efb7a86565a1c0f",
-                           "def9a507328e4cd395d983fe2589586e",
-                           "537664b7e2124b3c845bc0b51278d4af",
-                           "bc0418b57b2d4918819d3974ac1285d9"};
+    const char *keys[KEY_NUM] = {
+            "5f39e34b589c48b5bc8196040c8ebeb1",
+            "7e0c26e74f384de59efb7a86565a1c0f",
+            "def9a507328e4cd395d983fe2589586e",
+            "537664b7e2124b3c845bc0b51278d4af",
+            "bc0418b57b2d4918819d3974ac1285d9"};
 
-    ret = (jobjectArray) env->NewObjectArray(5,
+    ret = (jobjectArray) env->NewObjectArray(KEY_NUM,
                                              env->FindClass("java/lang/String"),
                                              env->NewStringUTF(""));
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < KEY_NUM; i++) {
         if (DEBUG) {
             LOGI("weather key %s\n", keys[i]);
         }
@@ -64,18 +66,20 @@ jobject jni_native_get_weather_keys(JNIEnv *env, jclass thiz) {
     jmethodID weather_init = env->GetMethodID(weather_cls, "<init>",
                                               "(Ljava/lang/String;Ljava/lang/String;)V");
 
-    const char *owner[5] = {"Solo",
-                            "unknown",
-                            "unknown",
-                            "unknown",
-                            "unknown"};
-    const char *keys[5] = {"8aeec77017724b518a5f0ba5d1888820",
-                           "7e0c26e74f384de59efb7a86565a1c0f",
-                           "def9a507328e4cd395d983fe2589586e",
-                           "537664b7e2124b3c845bc0b51278d4af",
-                           "bc0418b57b2d4918819d3974ac1285d9"};
+    const char *owner[KEY_NUM] = {
+            "Solo",
+            "unknown",
+            "unknown",
+            "unknown",
+            "unknown"};
+    const char *keys[KEY_NUM] = {
+            "5f39e34b589c48b5bc8196040c8ebeb1",
+            "7e0c26e74f384de59efb7a86565a1c0f",
+            "def9a507328e4cd395d983fe2589586e",
+            "537664b7e2124b3c845bc0b51278d4af",
+            "bc0418b57b2d4918819d3974ac1285d9"};
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < KEY_NUM; i++) {
         jobject weather_obj = env->NewObject(weather_cls, weather_init,
                                              env->NewStringUTF(owner[i]),
                                              env->NewStringUTF(keys[i]));
