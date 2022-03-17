@@ -85,11 +85,7 @@ public class CityHeadViewModel extends MultiItemViewModel<CityViewModel> {
     }
 
     private void initLocation() {
-        try {
-            mLocationClient = new AMapLocationClient(mApplication);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        mLocationClient = new AMapLocationClient(mApplication);
         AMapLocationClientOption option = new AMapLocationClientOption();
         option.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
         option.setOnceLocationLatest(true);
