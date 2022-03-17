@@ -7,4 +7,7 @@ include ':module-city'
 include ':module-setting'
 include ':module-weather'
 include ':module-main'
+include ':framework'
 include ':app'
+
+project(':framework').projectDir = new File("LiteFramework/framework") //对应Module的路径

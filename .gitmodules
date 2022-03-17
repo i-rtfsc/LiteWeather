@@ -1,0 +1,3 @@
+[submodule "LiteFramework"]
+	path = LiteFramework
+	url = git@github.com:journeyOS/LiteFramework.git

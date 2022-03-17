@@ -92,10 +92,10 @@ public class DBConfigs {
         public static final String LOCATION_ID_DEFAULT = "101020600";//上海浦东新区
 
         public static final String WEATHER_KEY = "key";
-        public static final String WEATHER_KEY_DEFAULT = "8aeec77017724b518a5f0ba5d1888820";
+        public static final String WEATHER_KEY_DEFAULT = "5f39e34b589c48b5bc8196040c8ebeb1";
 
         public static final String WEATHER_TIME = "time";
-        public static final int WEATHER_TIME_DEFAULT = 1;
+        public static final int WEATHER_TIME_DEFAULT = 9;
 
         public static final String WEATHER_SKY = "sky";
         public static final int WEATHER_SKY_DEFAULT = 19;
@@ -123,11 +123,11 @@ public class DBConfigs {
 
         public static List<Integer> getWeatherTimes() {
             List<Integer> times = new ArrayList<>();
-            times.add(1);
-            times.add(3);
-            times.add(5);
-            times.add(7);
             times.add(9);
+            times.add(7);
+            times.add(5);
+            times.add(3);
+            times.add(1);
 
             return times;
         }

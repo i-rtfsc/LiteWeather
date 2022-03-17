@@ -21,6 +21,7 @@ import com.journeyOS.liteframework.utils.KLog;
 import com.journeyOS.setting.BR;
 import com.journeyOS.setting.BuildConfig;
 import com.journeyOS.setting.R;
+import com.journeyOS.setting.utils.AppUtils;
 import com.journeyOS.setting.utils.StringUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -147,17 +148,27 @@ public class SettingsViewModel extends BaseViewModel<DataRepository> {
         return model.getInt(DBConfigs.Settings.WEATHER_SKY, DBConfigs.Settings.WEATHER_SKY_DEFAULT);
     }
 
-    public BindingCommand versionOnClickCommand = new BindingCommand(new BindingAction() {
+    public BindingCommand onVersionClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
             KLog.d(TAG, "click version item");
+            AppUtils.openInMarket(getApplication(), null, getApplication().getString(R.string.open_in_market));
         }
     });
 
-    public BindingCommand emailOnClickCommand = new BindingCommand(new BindingAction() {
+    public BindingCommand onEmailClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
             KLog.d(TAG, "click email item");
+            AppUtils.openEmail(getApplication(), getApplication().getString(R.string.email_account), getApplication().getString(R.string.send_email));
+        }
+    });
+
+    public BindingCommand onGithubClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            KLog.d(TAG, "click email item");
+            AppUtils.openBrowser(getApplication(), getApplication().getString(R.string.github_account));
         }
     });
 

@@ -23,7 +23,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout style="@style/theme_wrap_layout">
 
@@ -109,7 +110,7 @@
                     app:settingTitle="@string/version"
                     app:settingTitleTextColor="@color/text_primary"
                     app:showSummary="true"
-                    binding:onClickCommand="@{viewModel.versionOnClickCommand}"
+                    binding:onClickCommand="@{viewModel.onVersionClickCommand}"
                     binding:summary="@{viewModel.version}" />
 
                 <com.journeyOS.widget.setting.SettingView
@@ -120,7 +121,7 @@
                     app:settingSummaryTextColor="@color/text_secondary"
                     app:settingTitle="@string/email"
                     app:settingTitleTextColor="@color/text_primary"
-                    binding:onClickCommand="@{viewModel.emailOnClickCommand}" />
+                    binding:onClickCommand="@{viewModel.onEmailClickCommand}" />
 
                 <com.journeyOS.widget.setting.SettingView
                     style="@style/theme_bottom_layout"
@@ -130,7 +131,7 @@
                     app:settingSummaryTextColor="@color/text_secondary"
                     app:settingTitle="@string/github"
                     app:settingTitleTextColor="@color/text_primary"
-                    binding:onClickCommand="@{viewModel.emailOnClickCommand}" />
+                    binding:onClickCommand="@{viewModel.onGithubClickCommand}" />
 
             </LinearLayout>
 
@@ -165,5 +166,6 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+
 
 </layout>

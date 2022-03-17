@@ -63,7 +63,6 @@ public class SettingsFragment extends BaseFragment<FragmentSettingsBinding, Sett
         int sky = viewModel.getSettingSky();
         viewModel.weatherSky.set(mSkyTitle.get(sky));
         mSkyType = SkyType.values()[sky];
-        RxBus.getDefault().post(mSkyType);
 
         viewModel.initData();
         binding.expandableWeatherPort.collapse(false);
@@ -73,6 +72,7 @@ public class SettingsFragment extends BaseFragment<FragmentSettingsBinding, Sett
     @Override
     public void onResume() {
         super.onResume();
+        RxBus.getDefault().post(mSkyType);
     }
 
     @Override

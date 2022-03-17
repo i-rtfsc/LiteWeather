@@ -56,8 +56,8 @@ dependencies {
 
     def dependencies = rootProject.ext.dependencies
 
-//    api project(':framework')
-    api dependencies["lite-framework"]
+    api project(':framework')
+//    api dependencies["lite-framework"]
     api dependencies["arouter-api"]
 
     annotationProcessor dependencies["room-compiler"]
