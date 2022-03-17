@@ -25,7 +25,7 @@ jobjectArray jni_native_get_weather_key(JNIEnv *env, jclass thiz) {
 
     const char *keys[KEY_NUM] = {
             "5f39e34b589c48b5bc8196040c8ebeb1",
-            "7e0c26e74f384de59efb7a86565a1c0f",
+            "2d849c62d67a4b9e94607d0f1c744561",
             "def9a507328e4cd395d983fe2589586e",
             "537664b7e2124b3c845bc0b51278d4af",
             "bc0418b57b2d4918819d3974ac1285d9"};
@@ -74,7 +74,7 @@ jobject jni_native_get_weather_keys(JNIEnv *env, jclass thiz) {
             "unknown"};
     const char *keys[KEY_NUM] = {
             "5f39e34b589c48b5bc8196040c8ebeb1",
-            "7e0c26e74f384de59efb7a86565a1c0f",
+            "2d849c62d67a4b9e94607d0f1c744561",
             "def9a507328e4cd395d983fe2589586e",
             "537664b7e2124b3c845bc0b51278d4af",
             "bc0418b57b2d4918819d3974ac1285d9"};
